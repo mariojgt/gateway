@@ -34,8 +34,3 @@ php artisan vendor:publish
 it should copy the correct config file across.
 
 Edit config > variables.php
-
-V3 - Will remove the Modules stuff, back to Controllers/MOdels and views
-
-
-enjoy :)
