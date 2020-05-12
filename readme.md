@@ -10,14 +10,14 @@ add to composer.json
  "repositories": [
         {
             "type" : "path",
-            "url": "../packages/checkout",
+            "url": "../packages/gateway",
             "options": {
                 "symlink": true
             }
         }
     ],
     "require": {
-        "mariojgt/checkout": "dev-master"
+        "mariojgt/gateway": "dev-master"
     },
  ````
 

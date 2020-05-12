@@ -1,9 +1,9 @@
 <?php
 
-namespace mariojgt\checkout\Modules\Login\Controllers;
+namespace mariojgt\gateway\Modules\Login\Controllers;
 
 use App\Http\Controllers\Controller;
-use mariojgt\checkout\Modules\Login\Models\Login;
+use mariojgt\gateway\Modules\Login\Models\Login;
 
 use App\Http\Requests;
 use Auth;
@@ -14,7 +14,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('checkout.login::index');
+        return view('gateway.login::index');
     }
 
         /**
@@ -51,7 +51,7 @@ class LoginController extends Controller
             // passed auth check
 
             // log creation
-            $log = new \mariojgt\checkout\Models\Log();
+            $log = new \mariojgt\gateway\Models\Log();
             $log->user_id   = Auth::guard('admin')->id();
             $log->action    = 'Login';
             $log->model     = 'Admin';

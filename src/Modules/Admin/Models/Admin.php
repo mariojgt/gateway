@@ -1,12 +1,12 @@
 <?php
 
-namespace mariojgt\checkout\Modules\Admin\Models;
+namespace mariojgt\gateway\Modules\Admin\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use mariojgt\checkout\Notifications\AdminResetPasswordNotification;
-use mariojgt\checkout\Modules\Role\Models\Role;
+use mariojgt\gateway\Notifications\AdminResetPasswordNotification;
+use mariojgt\gateway\Modules\Role\Models\Role;
 
 class Admin extends Authenticatable
 {

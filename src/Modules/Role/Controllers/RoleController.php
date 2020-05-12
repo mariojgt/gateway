@@ -1,12 +1,12 @@
 <?php
-namespace mariojgt\checkout\Modules\Role\Controllers;
+namespace mariojgt\gateway\Modules\Role\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
 
 // Models Used
-use mariojgt\checkout\Modules\Role\Models\Role;
+use mariojgt\gateway\Modules\Role\Models\Role;
 
 class RoleController extends Controller
 {
@@ -29,7 +29,7 @@ class RoleController extends Controller
         $breadcrumb = [
             'User Roles' => ''
         ];
-        return view('checkout.role::index')->with(compact('breadcrumb', 'roles'));
+        return view('gateway.role::index')->with(compact('breadcrumb', 'roles'));
     }
 
     /**
@@ -39,7 +39,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('checkout.role::create');
+        return view('gateway.role::create');
     }
 
     /**
@@ -79,7 +79,7 @@ class RoleController extends Controller
     public function show($id)
     {
         //
-        return view('checkout.role::show');
+        return view('gateway.role::show');
     }
 
     /**
@@ -91,7 +91,7 @@ class RoleController extends Controller
     public function edit($id)
     {
         //
-        return view('checkout.role::edit');
+        return view('gateway.role::edit');
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace mariojgt\checkout\Modules\Login\Controllers;
+namespace mariojgt\gateway\Modules\Login\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -61,7 +61,7 @@ class AdminResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('checkout.login::reset-admin')->with(
+        return view('gateway.login::reset-admin')->with(
             ['token' => $token, 'email' => $request->email]
         );
     }

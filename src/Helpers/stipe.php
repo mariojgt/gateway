@@ -1,7 +1,7 @@
 <?php
-namespace mariojgt\checkout\Helpers;
+namespace mariojgt\gateway\Helpers;
 
-class test
+class stipe
 {
     public function test()
     {

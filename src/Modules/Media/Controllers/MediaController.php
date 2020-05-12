@@ -1,11 +1,11 @@
 <?php
-namespace mariojgt\checkout\Modules\Media\Controllers;
+namespace mariojgt\gateway\Modules\Media\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 // Models Used
-use mariojgt\checkout\Modules\Media\Models\Media;
+use mariojgt\gateway\Modules\Media\Models\Media;
 
 class MediaController extends Controller
 {
@@ -16,7 +16,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        return view('checkout.media::index');
+        return view('gateway.media::index');
     }
 
     /**
@@ -26,7 +26,7 @@ class MediaController extends Controller
      */
     public function create()
     {
-        return view('checkout.media::create');
+        return view('gateway.media::create');
     }
 
     /**
@@ -54,7 +54,7 @@ class MediaController extends Controller
     public function show($id)
     {
         //
-        return view('checkout.media::show');
+        return view('gateway.media::show');
     }
 
     /**
@@ -66,7 +66,7 @@ class MediaController extends Controller
     public function edit($id)
     {
         //
-        return view('checkout.media::edit');
+        return view('gateway.media::edit');
     }
 
     /**

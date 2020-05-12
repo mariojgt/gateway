@@ -1,11 +1,11 @@
 <?php
-namespace mariojgt\checkout\Modules\Message\Controllers;
+namespace mariojgt\gateway\Modules\Message\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 // Models Used
-use mariojgt\checkout\Modules\Message\Models\Message;
+use mariojgt\gateway\Modules\Message\Models\Message;
 
 class MessageController extends Controller
 {
@@ -16,7 +16,7 @@ class MessageController extends Controller
      */
     public function index()
     {
-        return view('checkout.message::index');
+        return view('gateway.message::index');
     }
 
     /**
@@ -26,7 +26,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view('checkout.message::create');
+        return view('gateway.message::create');
     }
 
     /**
@@ -54,7 +54,7 @@ class MessageController extends Controller
     public function show($id)
     {
         //
-        return view('checkout.message::show');
+        return view('gateway.message::show');
     }
 
     /**
@@ -66,7 +66,7 @@ class MessageController extends Controller
     public function edit($id)
     {
         //
-        return view('checkout.message::edit');
+        return view('gateway.message::edit');
     }
 
     /**

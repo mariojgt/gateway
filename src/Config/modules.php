@@ -4,12 +4,12 @@ return [
     /** Autofill package name for new modules and alias used to call module views
     *   Default : ! NONE !
     */
-    'package' => 'checkout',
+    'package' => 'gateway',
 
     /** Autofill namespace for new modules and namespace used to call modules
     *   Default : ! NONE !
     */
-    'namespace' => 'mariojgt\checkout',
+    'namespace' => 'mariojgt\gateway',
 
     /** Fully defined path to Modules location
     *   Default : __DIR__

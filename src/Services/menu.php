@@ -1,6 +1,6 @@
 <?php
 
-namespace mariojgt\checkout\Services;
+namespace mariojgt\gateway\Services;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\HTML;

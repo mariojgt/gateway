@@ -1,5 +1,5 @@
 <?php
-namespace mariojgt\checkout\Modules\Backup\Controllers;
+namespace mariojgt\gateway\Modules\Backup\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -7,7 +7,7 @@ use Excel;
 use DB;
 
 // Models Used
-use mariojgt\checkout\Modules\Admin\Models\Admin;
+use mariojgt\gateway\Modules\Admin\Models\Admin;
 
 class BackupController extends Controller
 {
@@ -28,7 +28,7 @@ class BackupController extends Controller
             'Database Backups'   => ''
         ];
 
-        return view('checkout.backup::index')
+        return view('gateway.backup::index')
             ->with(compact('breadcrumb', 'tables', 'tablesearch'));
     }
 
@@ -75,7 +75,7 @@ class BackupController extends Controller
     public function show($id)
     {
         //
-        return view('checkout.backup::show');
+        return view('gateway.backup::show');
     }
 
     /**
@@ -87,7 +87,7 @@ class BackupController extends Controller
     public function edit($id)
     {
         //
-        return view('checkout.backup::edit');
+        return view('gateway.backup::edit');
     }
 
     /**

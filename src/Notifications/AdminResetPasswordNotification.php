@@ -1,6 +1,6 @@
 <?php
 
-namespace mariojgt\checkout\Notifications;
+namespace mariojgt\gateway\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;

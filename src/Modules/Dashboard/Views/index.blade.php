@@ -1,1 +1,1 @@
-@extends('checkout::layouts.admin')
+@extends('gateway::layouts.admin')

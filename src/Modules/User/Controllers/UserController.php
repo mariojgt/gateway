@@ -1,11 +1,11 @@
 <?php
-namespace mariojgt\checkout\Modules\User\Controllers;
+namespace mariojgt\gateway\Modules\User\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 // Models Used
-use mariojgt\checkout\Modules\User\Models\User;
+use mariojgt\gateway\Modules\User\Models\User;
 
 class UserController extends Controller
 {
@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('checkout.user::index');
+        return view('gateway.user::index');
     }
 
     /**
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('checkout.user::create');
+        return view('gateway.user::create');
     }
 
     /**
@@ -54,7 +54,7 @@ class UserController extends Controller
     public function show($id)
     {
         //
-        return view('checkout.user::show');
+        return view('gateway.user::show');
     }
 
     /**
@@ -66,7 +66,7 @@ class UserController extends Controller
     public function edit($id)
     {
         //
-        return view('checkout.user::edit');
+        return view('gateway.user::edit');
     }
 
     /**

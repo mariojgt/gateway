@@ -1,6 +1,6 @@
 <?php
 
-namespace mariojgt\checkout\Commands;
+namespace mariojgt\gateway\Commands;
 
 use Illuminate\Console\Command;
 

@@ -1,11 +1,11 @@
 <?php
-namespace mariojgt\checkout\Modules\Log\Controllers;
+namespace mariojgt\gateway\Modules\Log\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 // Models Used
-use mariojgt\checkout\Modules\Log\Models\Log;
+use mariojgt\gateway\Modules\Log\Models\Log;
 
 class LogController extends Controller
 {
@@ -16,7 +16,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        return view('checkout.log::index');
+        return view('gateway.log::index');
     }
 
     /**
@@ -26,7 +26,7 @@ class LogController extends Controller
      */
     public function create()
     {
-        return view('checkout.log::create');
+        return view('gateway.log::create');
     }
 
     /**
@@ -54,7 +54,7 @@ class LogController extends Controller
     public function show($id)
     {
         //
-        return view('checkout.log::show');
+        return view('gateway.log::show');
     }
 
     /**
@@ -66,7 +66,7 @@ class LogController extends Controller
     public function edit($id)
     {
         //
-        return view('checkout.log::edit');
+        return view('gateway.log::edit');
     }
 
     /**

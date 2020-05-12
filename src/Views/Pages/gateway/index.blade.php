@@ -1,4 +1,4 @@
-@extends('checkout::Layouts.admin')
+@extends('gateway::Layouts.admin')
 
 @section('content')
 

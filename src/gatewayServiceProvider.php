@@ -1,12 +1,12 @@
 <?php
 
-namespace mariojgt\checkout;
+namespace mariojgt\gateway;
 
 use Illuminate\Support\ServiceProvider;
 
 use Config;
 
-class checkoutServiceProvider extends ServiceProvider
+class gatewayServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -16,9 +16,9 @@ class checkoutServiceProvider extends ServiceProvider
     public function boot(\Illuminate\Routing\Router $router)
     {
         //login Middleware is you have any
-        $router->aliasMiddleware('CheckAuth', 'mariojgt\checkout\Middleware\CheckAuth::class');
-        $router->aliasMiddleware('CheckGuest', 'mariojgt\checkout\Middleware\CheckGuest::class');
-        $this->loadViewsFrom(__DIR__.'/views', 'checkout');
+        // $router->aliasMiddleware('CheckAuth', 'mariojgt\gateway\Middleware\CheckAuth::class');
+        // $router->aliasMiddleware('CheckGuest', 'mariojgt\gateway\Middleware\CheckGuest::class');
+        $this->loadViewsFrom(__DIR__.'/views', 'gateway');
     }
 
     /**
@@ -30,8 +30,8 @@ class checkoutServiceProvider extends ServiceProvider
     {
         // Push config and assets to main Laravel config
         $this->publishes([
-            __DIR__.'/Assets' => public_path('vendor/checkout/'),
-            __DIR__.'/Config/checkoutConfig.php' => config_path('checkout.php'),
+            __DIR__.'/Assets' => public_path('vendor/gateway/'),
+            __DIR__.'/Config/gatewayConfig.php' => config_path('gateway.php'),
         ]);
 
         // Overide the auth config to match our own
@@ -43,7 +43,7 @@ class checkoutServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/Routes/api.php');
 
         // Load layouts
-        $this->loadViewsFrom(__DIR__.'/Views', 'checkout');
+        $this->loadViewsFrom(__DIR__.'/Views', 'gateway');
 
         // Load global migrations
         $this->loadMigrationsFrom(__DIR__.'/Database/Migrations');
@@ -58,7 +58,7 @@ class checkoutServiceProvider extends ServiceProvider
             $classConcatName = '\\'.$pieces[0];
             if (end($pieces) == 'php') {
                 //the alias is alyes the class name
-                $loader->alias($pieces[0], 'mariojgt\unityframework\Helpers'.$classConcatName);
+                $loader->alias($pieces[0], 'mariojgt\gateway\Helpers'.$classConcatName);
             }
         }
     }

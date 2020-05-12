@@ -1,10 +1,10 @@
 <?php
 
-namespace mariojgt\checkout\Modules\Role\Models;
+namespace mariojgt\gateway\Modules\Role\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use mariojgt\checkout\Modules\Admin\Models\Admin;
+use mariojgt\gateway\Modules\Admin\Models\Admin;
 
 class Role extends Model
 {

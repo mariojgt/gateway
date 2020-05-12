@@ -1,6 +1,6 @@
 <?php
 
-namespace mariojgt\checkout\Modules\Login\Controllers;
+namespace mariojgt\gateway\Modules\Login\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;

@@ -1,6 +1,6 @@
 <?php
 
-namespace mariojgt\checkout\Models;
+namespace mariojgt\gateway\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

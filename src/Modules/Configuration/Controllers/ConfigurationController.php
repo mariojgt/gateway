@@ -1,11 +1,11 @@
 <?php
-namespace mariojgt\checkout\Modules\Configuration\Controllers;
+namespace mariojgt\gateway\Modules\Configuration\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 // Models Used
-use mariojgt\checkout\Modules\Configuration\Models\Configuration;
+use mariojgt\gateway\Modules\Configuration\Models\Configuration;
 
 class ConfigurationController extends Controller
 {
@@ -26,7 +26,7 @@ class ConfigurationController extends Controller
         $breadcrumb = [
             'Configuration' => ''
         ];
-        return view('checkout.configuration::index')
+        return view('gateway.configuration::index')
             ->with(compact('breadcrumb', 'sections', 'configs'));
     }
 
@@ -37,7 +37,7 @@ class ConfigurationController extends Controller
      */
     public function create()
     {
-        return view('checkout.configuration::create');
+        return view('gateway.configuration::create');
     }
 
     /**
@@ -75,7 +75,7 @@ class ConfigurationController extends Controller
     public function show($id)
     {
         //
-        return view('checkout.configuration::show');
+        return view('gateway.configuration::show');
     }
 
     /**
@@ -87,7 +87,7 @@ class ConfigurationController extends Controller
     public function edit($id)
     {
         //
-        return view('checkout.configuration::edit');
+        return view('gateway.configuration::edit');
     }
 
     /**

@@ -1,8 +1,8 @@
 <?php
 Route::group(array(
-    'namespace'  => 'mariojgt\checkout\Controllers',
+    'namespace'  => 'mariojgt\gateway\Controllers',
     'middleware' => ['api'],
-    'prefix'     => 'admin' //config('checkout.admindir')
+    'prefix'     => 'admin' //config('gateway.admindir')
 ), function () {
     // Route::apiResource('admin', 'AdminController');
 });

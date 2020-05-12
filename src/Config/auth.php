@@ -82,7 +82,7 @@ return [
 
         'admins' => [
             'driver' => 'eloquent',
-            'model' => mariojgt\checkout\Models\Admin::class,
+            'model' => mariojgt\gateway\Models\Admin::class,
         ],
 
         // 'users' => [

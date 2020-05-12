@@ -1,11 +1,11 @@
 <?php
 
-namespace mariojgt\checkout\Modules\Admin\Controllers;
+namespace mariojgt\gateway\Modules\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use mariojgt\checkout\Modules\Admin\Models\Admin;
-use mariojgt\checkout\Modules\Role\Models\Role;
+use mariojgt\gateway\Modules\Admin\Models\Admin;
+use mariojgt\gateway\Modules\Role\Models\Role;
 
 class AdminController extends Controller
 {
@@ -21,7 +21,7 @@ class AdminController extends Controller
         $breadcrumb = [
             'Admin Users'    => ''
         ];
-        return view('checkout.admin::index')
+        return view('gateway.admin::index')
             ->with(compact('breadcrumb', 'admins', 'roles'));
     }
 

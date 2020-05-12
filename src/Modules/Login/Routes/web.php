@@ -1,8 +1,8 @@
 <?php
 Route::group(array(
     'middleware' => ['web', 'CheckGuest'],
-    'prefix'     => config('checkout.admindir'),
-    'namespace'  => 'mariojgt\checkout\Modules\Login\Controllers',
+    'prefix'     => config('gateway.admindir'),
+    'namespace'  => 'mariojgt\gateway\Modules\Login\Controllers',
 ), function () {
     // Login and Authenticate
     Route::get('login', 'LoginController@index')
@@ -24,8 +24,8 @@ Route::group(array(
 
 Route::group(array(
     'middleware' => ['web', 'CheckAuth'],
-    'prefix'     => config('checkout.admindir'),
-    'namespace'  => 'mariojgt\checkout\Modules\Login\Controllers'
+    'prefix'     => config('gateway.admindir'),
+    'namespace'  => 'mariojgt\gateway\Modules\Login\Controllers'
 ), function () {
     Route::get('logout', 'LoginController@logout')
         ->name('admin.logout');

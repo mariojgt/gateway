@@ -1,8 +1,8 @@
 <?php
 Route::group(array(
-    'namespace'  => 'mariojgt\checkout\Modules\Admin\Controllers',
+    'namespace'  => 'mariojgt\gateway\Modules\Admin\Controllers',
     'middleware' => ['web', 'CheckAuth'],
-    'prefix'     => config('checkout.admindir')
+    'prefix'     => config('gateway.admindir')
 ), function () {
     // Index file / list
     Route::get('admin', 'AdminController@index')

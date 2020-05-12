@@ -1,9 +1,9 @@
 <?php
 Route::group(array(
-    'namespace'  => 'mariojgt\checkout\Controllers',
+    'namespace'  => 'mariojgt\gateway\Controllers',
     //'middleware' => ['web', 'CheckAuth'],
-    'prefix'     => 'checkout' //config('checkout.admindir')
+    'prefix'     => 'gateway' //config('gateway.admindir')
 ), function () {
     //index
-    Route::get('checkout', 'checkout\checkoutController@index')->name('checkout');
+    Route::get('stripe', 'gateway\StripeController@index')->name('stripe');
 });

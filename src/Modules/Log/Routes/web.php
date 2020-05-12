@@ -1,6 +1,6 @@
 <?php
 Route::group(array(
-    'namespace'  => 'mariojgt\checkout\Modules\Log\Controllers',
+    'namespace'  => 'mariojgt\gateway\Modules\Log\Controllers',
     'middleware' => ['web'],
     'prefix'     => ''
 ), function () {

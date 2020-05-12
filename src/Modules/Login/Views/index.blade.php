@@ -1,4 +1,4 @@
-@extends('checkout::layouts.plain')
+@extends('gateway::layouts.plain')
 
 @section('title', 'Please Login')
 

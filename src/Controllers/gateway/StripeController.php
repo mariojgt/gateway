@@ -1,5 +1,5 @@
 <?php
-namespace mariojgt\checkout\Controllers\demo;
+namespace mariojgt\gateway\Controllers\demo;
 
 //Laravel standard classes
 use App\Http\Controllers\Controller;
@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 // MODELS
 
-class checkoutController extends Controller
+class gatewayController extends Controller
 {
 
     public function index()

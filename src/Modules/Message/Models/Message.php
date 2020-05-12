@@ -1,6 +1,6 @@
 <?php
 
-namespace mariojgt\checkout\Modules\Message\Models;
+namespace mariojgt\gateway\Modules\Message\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
