@@ -2,7 +2,7 @@
     "name": "mariojgt/gateway",
     "description": "A startup point for multi acl admin and users. For South Coast Web Projects",
     "type": "laravel",
-    "license": "Private",
+    "license": "MIT",
     "authors": [
         {
             "name": "mario jose goes tarosso",
