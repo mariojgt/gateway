@@ -4,6 +4,8 @@ Route::group(array(
     //'middleware' => ['web', 'CheckAuth'],
     'prefix'     => 'gateway' //config('gateway.admindir')
 ), function () {
-    //index
-    Route::get('stripe', 'gateway\StripeController@index')->name('stripe');
+    //stripe
+    Route::post('stripe', 'gateway\StripeController@process')->name('stripe');
+    Route::get('stripe/success', 'gateway\StripeController@success')->name('stripe.success');
+    Route::get('stripe/error', 'gateway\StripeController@error')->name('stripe.error');
 });

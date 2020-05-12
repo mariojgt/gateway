@@ -3,8 +3,8 @@ namespace mariojgt\gateway\Helpers;
 
 class stipe
 {
-    public function test()
+    public static function stripeGateway()
     {
-        dd('all set');
+
     }
 }
