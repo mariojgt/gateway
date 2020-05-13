@@ -10,12 +10,17 @@ use Session;
 
 class StripeController extends Controller
 {
-    public function process(Request $request)
+
+    public function __construct()
     {
+        //loading the stripe key
         // Set your secret key. Remember to switch to your live secret key in production!
         // See your keys here: https://dashboard.stripe.com/account/apikeys
         \Stripe\Stripe::setApiKey(config('gateway.stripe_api'));
+    }
 
+    public function process(Request $request)
+    {
         $stripe_session = \Stripe\Checkout\Session::create([
         'payment_method_types' => ['card'],
             self::lineItems(Request()->all()),
@@ -81,14 +86,25 @@ class StripeController extends Controller
 
     public function success(Request $request)
     {
-        \Stripe\Stripe::setApiKey(config('gateway.stripe_api'));
+        //using the stripe session id to retrive the payment info
         $session = \Stripe\Checkout\Session::retrieve(Request('session_id'));
-        $payment_Status = \Stripe\PaymentIntent::retrieve($session->payment_intent);
-        dd($payment_Status->status);
+        //here we are using the payment intent to get the oder status and data
+        $payment_status = \Stripe\PaymentIntent::retrieve($session->payment_intent);
+
+        $dataReturn = [
+            "stripe_session"        => $session,
+            "stripe_payment_status" => $payment_status,
+        ];
+
+        //return the user to the sucess page define in the config file
+        return redirect()->route(config('gateway.site_success_redirect'), [
+            'data'        => json_encode($dataReturn),
+        ]);
     }
 
-    private function error(Request $request)
+    public function error(Request $request)
     {
-        dd('error');
+        //send teh user to the error page define in the /env file
+        return redirect()->route(config('gateway.site_error_redirect'), []);
     }
 }
