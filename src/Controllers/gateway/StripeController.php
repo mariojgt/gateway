@@ -38,8 +38,7 @@ class StripeController extends Controller
         //seting um the items
         foreach ($request['line_items_name'] as $key => $item) {
             //the product price must not have . or , and need to be a integer
-            $finalProductPrice = str_replace(".", "", decrypt($request['line_items_amount'][$key]));
-            $finalProductPrice = str_replace(",", "", $finalProductPrice);
+            $finalProductPrice = round(decrypt($request['line_items_amount'][$key]) * 100);
             $temp = [
                     'name'        => $request['line_items_name'][$key],
                     'description' => $request['line_items_description'][$key],
@@ -66,15 +65,17 @@ class StripeController extends Controller
             array_push($line_items, $tempPostage);
         }
 
-        //adding the taxes
-        $tempVat = [
-            'name'        => $request['vat_name'][0],
-            'description' => $request['vat_description'][0],
-            'amount'      => decrypt($request['vat_amount'][0]),
-            'currency'    => config('gateway.stripe_currency'),
-            'quantity'    => decrypt($request['vat_quantity'][0]),
-            ];
-        array_push($line_items, $tempVat);
+        if (!empty(decrypt($request['vat_amount'][0]))) {
+            //adding the taxes
+            $tempVat = [
+                'name'        => $request['vat_name'][0],
+                'description' => $request['vat_description'][0],
+                'amount'      => decrypt($request['vat_amount'][0]),
+                'currency'    => config('gateway.stripe_currency'),
+                'quantity'    => decrypt($request['vat_quantity'][0]),
+                ];
+            array_push($line_items, $tempVat);
+        }
 
         //creating the line items array that stripe will process for use the payment
         $line_items_final  = ['line_items' => [
