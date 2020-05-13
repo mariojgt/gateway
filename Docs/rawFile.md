@@ -131,32 +131,55 @@ In the controller where you will display the pay button add the following.
 
 # Step 4 | render  the pay button with data
 
-Add the component that generate the button, note that you need to pass the `$cart` form the set before, if your array have the same structure will work just fine if you need to change this file you will find at "vendor/mariojgt/gateway/src/Views/Pages/stripe/components/payButton.blade.php"
 
-```l
-@component('gateway::Pages.stripe.components.payButton',compact('cart'))
-@endcomponent
-```
+
+You have 2 option you can generate the button like this.
+
+> A click to pay button like this.
+>
+> ```php
+> @component('gateway::Pages.stripe.components.payButton',compact('cart'))
+> @endcomponent
+> ```
+
+> Or a page auto redirect like this.
+>
+> ```php
+> @component('gateway::Pages.stripe.components.pageRedirect',compact('cart'))
+> @endcomponent
+> ```
+
+At this point you read for a response from the gateway Provider, this package don't save your order it only handle the response, if you want save the order in the database you need to do yourself, the reason why is many project handle orders in different ways but the all need a response from the gateway.
 
 # Step 5 | response
 
-Once you pay there is 2 types of response a success and a error, you can locate them inside the gateway payment that you choose for example if you using stripe you will find at "vendor/mariojgt/gateway/src/Controllers/gateway/StripeController.php"
+Once  you paid you have 2 possible response a success and error, the success method will get the info and send the user the the route that you define in you .env file, same for the error,
+
+"vendor/mariojgt/gateway/src/Controllers/gateway/StripeController.php"
 
 ```php
     public function success(Request $request)
     {
-        \Stripe\Stripe::setApiKey(config('gateway.stripe_api'));//open the conection
-        //this is the session id which stripe sends back to you
+        //using the stripe session id to retrive the payment info
         $session = \Stripe\Checkout\Session::retrieve(Request('session_id'));
-        //in here we are goin to the this order status using the session id reponse
-        $payment_Status = \Stripe\PaymentIntent::retrieve($session->payment_intent);
-        dd($payment_Status->status);
+        //here we are using the payment intent to get the oder status and data
+        $payment_status = \Stripe\PaymentIntent::retrieve($session->payment_intent);
+
+        $dataReturn = [
+            "stripe_session"        => $session,
+            "stripe_payment_status" => $payment_status,
+        ];
+
+        //return the user to the sucess page define in the config file
+        return redirect()->route(config('gateway.site_success_redirect'), [
+            'data'        => json_encode($dataReturn),
+        ]);
     }
 
-    private function error(Request $request)
+    public function error(Request $request)
     {
-        //you error logic here
-        dd('error');
+        //send teh user to the error page define in the /env file
+        return redirect()->route(config('gateway.site_error_redirect'), []);
     }
 ```
 
