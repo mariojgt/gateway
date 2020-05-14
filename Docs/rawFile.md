@@ -112,6 +112,16 @@ Your cart array will need to follow this structure.
   "cart_exc_vat"        => 63.5
   "cart_vat"            => 12.7
   "cart_inc_vat"        => 76.2
+  "customerInfo" => [ //not required but is nice to have
+            "id"          => null
+            "username"    => "mariojgt2@gmail.com"
+            "name"        => "asd"
+            "surname"     => "tarosso"
+            "dialcode"    => "44"
+            "phone"       => "123132132"
+            "email"       => "mariojgt2@gmail.com"
+            "accountType" => 3
+   ]
 ]
 ```
 
