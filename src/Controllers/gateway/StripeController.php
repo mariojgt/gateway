@@ -5,12 +5,12 @@ namespace mariojgt\gateway\Controllers\gateway;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Session;
+use Cache;
 
 // MODELS
 
 class StripeController extends Controller
 {
-
     public function __construct()
     {
         //loading the stripe key
@@ -23,11 +23,13 @@ class StripeController extends Controller
     {
         $stripe_session = \Stripe\Checkout\Session::create([
         'payment_method_types' => ['card'],
-            self::lineItems(Request()->all()),
-        'success_url' =>env('APP_URL').config('gateway.success_redirect').'?session_id={CHECKOUT_SESSION_ID}',
-        'cancel_url'  =>env('APP_URL').config('gateway.error_redirect'),
+            self::lineItems(Request()->all()),//the item the customer need to pay unclude the vat and postage if not empty
+        'customer_email' => self::customerInfo(Request()->all()),//the customer email here if not empty
+        'success_url'    => env('APP_URL').config('gateway.success_redirect').'?session_id={CHECKOUT_SESSION_ID}',
+        'cancel_url'     => env('APP_URL').config('gateway.error_redirect'),
         ]);
-
+        //create a chacke with the session key that we goin to use to check if is a valid order
+        Cache::put($stripe_session->id, true, 2400);
         //go tho the view and send the user to the checkout
         return view("gateway::Pages.stripe.index", compact('stripe_session'));
     }
@@ -83,6 +85,16 @@ class StripeController extends Controller
         ]];
 
         return $line_items_final;
+    }
+
+    private function customerInfo($request)
+    {
+        //if the use_customer is true and exist them we goin to send the customer info to stripe
+        if (!empty($request['use_customer']) && decrypt($request['use_customer']) == true) {
+            return decrypt($request['customer_email']);
+        } else {
+            return null;
+        }
     }
 
     public function success(Request $request)

@@ -72,6 +72,12 @@
         {!! Form::hidden('line_items.quantity[]', encrypt($item['cart_qty'])) !!} {{-- how many items the user us buying --}}
     @endforeach
 
+    {{-- geting the customer info if is not empty --}}
+    @if (!empty($cart['customerInfo']))
+        {!! Form::hidden('use_customer', encrypt(true)) !!}
+        {!! Form::hidden('customer_email', encrypt($cart['customerInfo']['email'])) !!}
+    @endif
+
     @php
         $postageAmount = round($cart['postage_exc_vat'] * 100);
     @endphp
@@ -82,7 +88,7 @@
     {!! Form::hidden('postage.quantity[]', encrypt(1)) !!} {{-- how many items the user us buying --}}
 
     @php
-        $taxAmount = round($cart['product_vat'] * 100);
+        $taxAmount = round($cart['cart_vat'] * 100);
     @endphp
     {{-- the cart vat --}}
     {!! Form::hidden('vat.name[]', "VAT") !!} {{-- product name --}}
