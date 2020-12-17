@@ -25,6 +25,11 @@ class BraintreeGatewayContoller extends Controller
         ]);
     }
 
+    public function clientToken()
+    {
+        return $this->gateway->clientToken()->generate();
+    }
+
 
     public function index()
     {
