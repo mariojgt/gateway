@@ -3,7 +3,7 @@ namespace Mariojgt\Gateway;
 
 use Illuminate\Support\ServiceProvider;
 
-class SkeletonProvider extends ServiceProvider
+class GatewayProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -40,9 +40,9 @@ class SkeletonProvider extends ServiceProvider
         //     __DIR__.'/../Publish/Resource/' => resource_path('vendor/Peach/')
         // ]);
 
-        // publish the public folder
-        // $this->publishes([
-        //     __DIR__.'/../Publish/' => public_path('vendor/Peach/')
-        // ]);
+        // Publish the gateway config file
+        $this->publishes([
+            __DIR__.'/../Publish/Config/' => base_path('config/')
+        ]);
     }
 }

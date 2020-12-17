@@ -18,7 +18,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Mariojgt\\Gateway\\": "src"
+            "Mariojgt\\Gateway\\": "src",
+            "braintree/braintree_php": "^5.4"
         }
     },
 
