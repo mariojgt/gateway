@@ -1,22 +1,24 @@
 {
     "name": "mariojgt/gateway",
-    "description": "Laravel 7 gateway project, gateway suporte for now stipe.",
+    "description": "A Laravel Package Gateway",
+    "keywords": [
+        "laravel",
+        "multiple GateWay"
+    ],
     "type": "laravel",
     "license": "MIT",
     "authors": [
         {
-            "name": "mario jose goes tarosso",
+            "name": "mario",
             "email": "mariojgt2@gmail.com"
         }
     ],
     "require":{
-        "php": ">=7.2.5",
-        "stripe/stripe-php": "^7.3",
-        "laravelcollective/html": "^6.1"
+        "php": "^7.3|^8.0"
     },
     "autoload": {
         "psr-4": {
-            "mariojgt\\gateway\\": "src"
+            "Mariojgt\\Gateway\\": "src"
         }
     },
 
@@ -27,16 +29,10 @@
     },
 
     "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        },
         "laravel": {
             "providers": [
-                "mariojgt\\gateway\\gatewayServiceProvider"
-            ],
-            "aliases": {
-                "Logit":"mariojgt\\gateway\\Models\\Log"
-            }
+                "Mariojgt\\Gateway\\GatewayProvider"
+            ]
         }
     },
     "minimum-stability": "dev",
