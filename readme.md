@@ -61,3 +61,9 @@ $session      = $stipeManager->checkSession('Session_id');
 ```
 
 This will return the session information and the payment information.
+
+
+
+Notes:
+
+In Production disable the website demo buy changing the key value demo_mode to false in the gateway config file.
