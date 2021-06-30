@@ -1,6 +1,11 @@
 <?php
 
 return [
+    // Paypal key
+    'paypal_client_id' => env('PAYPAL_CLIENT_ID'),
+    'paypal_secret'    => env('PAYPAL_SECRET'),
+    'paypal_live'      => false, // If enable transaction will be live
+
     // Stripe key
     'stripe_secret'        => env('STRIPE_SECRET'),
     'stripe_secret_public' => env('STRIPE_SECRET_PUBLIC'),

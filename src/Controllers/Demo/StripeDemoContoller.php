@@ -1,12 +1,12 @@
 <?php
 
-namespace Mariojgt\Gateway\Controllers;
+namespace Mariojgt\Gateway\Controllers\Demo;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Mariojgt\Gateway\Controllers\StripeContoller;
 
-class DemoContoller extends Controller
+class StripeDemoContoller extends Controller
 {
     /**
      * @return [blade view]
