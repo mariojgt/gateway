@@ -1,9 +1,8 @@
 {
     "name": "mariojgt/gateway",
-    "description": "A Laravel Package Gateway",
+    "description": "A Laravel Package Gateway, a quick start for new laravel Packages",
     "keywords": [
-        "laravel",
-        "multiple GateWay"
+        "laravel"
     ],
     "type": "laravel",
     "license": "MIT",
@@ -14,12 +13,12 @@
         }
     ],
     "require":{
-        "php": "^7.3|^8.0"
+        "php": "^7.3|^8.0",
+        "stripe/stripe-php": "^7.3"
     },
     "autoload": {
         "psr-4": {
-            "Mariojgt\\Gateway\\": "src",
-            "braintree/braintree_php": "^5.4"
+            "Mariojgt\\Gateway\\": "src"
         }
     },
 
