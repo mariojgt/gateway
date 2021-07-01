@@ -43,8 +43,9 @@ const allowedCardAuthMethods = ["PAN_ONLY", "CRYPTOGRAM_3DS"];
 const tokenizationSpecification = {
     type: 'PAYMENT_GATEWAY',
     parameters: {
-        'gateway': 'example',
-        'gatewayMerchantId': 'exampleGatewayMerchantId'
+        "gateway": "stripe",
+        "stripe:version": "2018-10-31",
+        "stripe:publishableKey": "{{ config('gateway.stripe_secret_public') }}",
     }
 };
 
@@ -156,8 +157,10 @@ function onPaymentAuthorized(paymentData) {
                 resolve({
                     transactionState: 'SUCCESS'
                 });
+                console.log(paymentData);
             })
             .catch(function() {
+                console.log('error');
                 resolve({
                     transactionState: 'ERROR',
                     error: {
@@ -215,20 +218,20 @@ function getGoogleTransactionInfo() {
     return {
         displayItems: [{
                 label: "Subtotal",
-                type: "SUBTOTAL",
+                type : "SUBTOTAL",
                 price: "11.00",
             },
             {
                 label: "Tax",
-                type: "TAX",
+                type : "TAX",
                 price: "1.00",
             }
         ],
-        countryCode: 'US',
-        currencyCode: "USD",
+        countryCode     : 'UK',
+        currencyCode    : "GBP",
         totalPriceStatus: "FINAL",
-        totalPrice: "12.00",
-        totalPriceLabel: "Total"
+        totalPrice      : "12.00",
+        totalPriceLabel : "Total"
     };
 }
 
