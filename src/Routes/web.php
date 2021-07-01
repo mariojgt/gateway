@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mariojgt\Gateway\Controllers\Demo\GoogleDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\PaypalDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\StripeDemoContoller;
 
@@ -17,8 +18,10 @@ if (config('gateway.demo_mode')) {
 
         // Paypal example
         Route::get('/paypal_pay', [PaypalDemoContoller::class, 'index'])->name('paypal_pay');
-
         Route::get('/paypal/checkpayment/{orderid}', [PaypalDemoContoller::class, 'checkPayment'])
             ->name('paypal.checkpayment');
+
+        // Google Pay Example
+        Route::get('/google_pay', [GoogleDemoContoller::class, 'index'])->name('google_pay');
     });
 }
