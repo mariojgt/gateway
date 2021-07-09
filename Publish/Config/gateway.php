@@ -9,6 +9,7 @@ return [
     // Stripe key
     'stripe_secret'        => env('STRIPE_SECRET'),
     'stripe_secret_public' => env('STRIPE_SECRET_PUBLIC'),
+    'stripe_log' => '/stripe_logs',
     // Stripe Session Generate route
     'stripe_session_generate' => '/stripe_pay/session_generate',
     // Success Url

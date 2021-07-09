@@ -2,11 +2,13 @@
 
 namespace Mariojgt\Gateway\Controllers;
 
+use Carbon\Carbon;
 use Stripe\StripeClient;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 
-class StripeContoller extends Controller
+class StripeController extends Controller
 {
     public function __construct()
     {
@@ -31,15 +33,17 @@ class StripeContoller extends Controller
         //     'currency'    => 'GBP',
         //     'quantity'    => 2,
         // ]
-
         // Call stripe session
         $stripeSession = $this->stripe->checkout->sessions->create([
-            'success_url'          => config('gateway.success_url'),
-            'cancel_url'           => config('gateway.cancel_url'),
+            'success_url'          => url(config('gateway.success_url')),
+            'cancel_url'           => url(config('gateway.cancel_url')),
             'payment_method_types' => ['card'],
             'line_items'           => $cartItem,
             'mode' => 'payment',
         ]);
+
+        $this->createLog($stripeSession);
+
         return $stripeSession;
     }
 
@@ -62,5 +66,16 @@ class StripeContoller extends Controller
             'session_info'   => $session,
             'payment_status' => $payment_status
         ];
+    }
+
+    /**
+     * Create a stripe log file when the session has been created
+     * @param mixed $data
+     *
+     */
+    public function createLog($data)
+    {
+        $LogFileName = $data->id.'.log';
+        Storage::put(config('gateway.stripe_log') . $LogFileName, json_encode($data));
     }
 }
