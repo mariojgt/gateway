@@ -2,22 +2,8 @@
 
 namespace Mariojgt\Gateway\Controllers;
 
-use PayPal\Api\Item;
-use PayPal\Api\Payer;
-use PayPal\Api\Amount;
-use PayPal\Api\Payment;
-use PayPal\Api\ItemList;
-use Stripe\StripeClient;
-use PayPal\Api\Transaction;
-use PayPal\Rest\ApiContext;
-use PayPal\Api\RedirectUrls;
-use PayPal\Api\PaymentExecution;
-use Illuminate\Support\Facades\URL;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
-use PayPal\Auth\OAuthTokenCredential;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
 
 
 class PaypalContoller extends Controller
@@ -44,7 +30,7 @@ class PaypalContoller extends Controller
     public function checkSession($paymentId)
     {
         // Get the order information
-        $response = Http::withBasicAuth($this->paypal_client_id, $this->paypal_secret)->get($this->paypal_url . '/v2/checkout/orders/'.$paymentId, []);
+        $response = Http::withBasicAuth($this->paypal_client_id, $this->paypal_secret)->get($this->paypal_url . '/v2/checkout/orders/' . $paymentId, []);
 
         // Return the response
         if ($response->successful()) {
