@@ -18,7 +18,7 @@ class PaypalDemoContoller extends Controller
 
     public function checkPayment(Request $request, $orderid)
     {
-        // Start the stripe class
+        // Start the paypal class
         $paypalManager = new PaypalContoller();
         $paypalInfo    = $paypalManager->checkSession($orderid);
 
