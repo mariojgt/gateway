@@ -4,7 +4,7 @@ namespace Mariojgt\Gateway\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
-
+use use Illuminate\Support\Facades\Storage;
 
 class PaypalContoller extends Controller
 {
@@ -31,6 +31,8 @@ class PaypalContoller extends Controller
     {
         // Get the order information
         $response = Http::withBasicAuth($this->paypal_client_id, $this->paypal_secret)->get($this->paypal_url . '/v2/checkout/orders/' . $paymentId, []);
+        // Create a log of this order in the system
+        $this->createLog($response->json());
 
         // Return the response
         if ($response->successful()) {
@@ -38,5 +40,17 @@ class PaypalContoller extends Controller
         } else {
             return false;
         }
+    }
+
+    /**
+     * Create a paypal log file
+     *
+     * @param mixed $data
+     *
+     */
+    public function createLog($data)
+    {
+        $LogFileName = $data['id'].'.log';
+        Storage::put(config('gateway.paypal_log') . $LogFileName, json_encode($data));
     }
 }

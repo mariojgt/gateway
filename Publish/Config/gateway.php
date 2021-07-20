@@ -4,6 +4,8 @@ return [
     // Paypal key
     'paypal_client_id'          => env('PAYPAL_CLIENT_ID'),
     'paypal_secret'             => env('PAYPAL_SECRET'),
+    // paypal log file location default storage/app/stripe_logs
+    'paypal_log'                => '//paypal_logs//',
     'paypal_session_generate'   => '/paypal/generate/session',     // can be use to pregenerate a order
     'paypal_session_degenerate' => '/paypal/degenerate/session',   // can be use to rollback a order
     'paypal_complete'           => '/checkout/complete',           // can be use to rollback a order
