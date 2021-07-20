@@ -1,5 +1,7 @@
 # Laravel Gateway 
 
+#composer require mariojgt/gateway
+
 This is a Laravel package design to make checkout easy and clean to implement, avaliable integration (Stripe), in the future we going to have some more integrations with others gateways, the paypal is almost there
 
 ## How to use
