@@ -4,7 +4,7 @@ namespace Mariojgt\Gateway\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
-use use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage;
 
 class PaypalContoller extends Controller
 {
