@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Mariojgt\Gateway\Controllers\Demo\GoogleDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\PaypalDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\StripeDemoContoller;
+use Mariojgt\Gateway\Controllers\Demo\GoCardlessDemoContoller;
 
 if (config('gateway.demo_mode')) {
     // Demo
@@ -23,5 +24,11 @@ if (config('gateway.demo_mode')) {
 
         // Google Pay Example
         Route::get('/google_pay', [GoogleDemoContoller::class, 'index'])->name('google_pay');
+
+        // Gocardless example
+        Route::get('/gocardless_pay', [GoCardlessDemoContoller::class, 'index'])
+            ->name('gocardless_pay');
+        Route::post('/gocardless_pay/setup/debit', [GoCardlessDemoContoller::class, 'debitGenerate'])
+            ->name('gocardless_pay.setup.debit');
     });
 }
