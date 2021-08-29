@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mariojgt\Gateway\Controllers\StripeController;
 use Mariojgt\Gateway\Controllers\Demo\GoogleDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\PaypalDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\StripeDemoContoller;
@@ -32,3 +33,13 @@ if (config('gateway.demo_mode')) {
             ->name('gocardless_pay.setup.debit');
     });
 }
+
+
+// Stripe weebhooks
+Route::group([
+    'middleware' => ['web'],
+], function () {
+    // Stripe webhooks
+    Route::any('/stripe/weebhook', [StripeController::class, 'webhookManager'])
+        ->name('stripe.weebhook');
+});

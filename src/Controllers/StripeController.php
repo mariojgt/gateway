@@ -4,8 +4,11 @@ namespace Mariojgt\Gateway\Controllers;
 
 use Carbon\Carbon;
 use Stripe\StripeClient;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Events\StripeUsePaymentSuccessEvent;
+use App\Events\StripeUserSubscriptionCancelEvent;
 
 
 class StripeController extends Controller
@@ -69,13 +72,63 @@ class StripeController extends Controller
     }
 
     /**
+     * Handle stripe weebhook
+     *
+     * @param Request $request
+     *
+     * @return [type]
+     */
+    public function webhookManager(Request $request)
+    {
+        // This is your Stripe CLI webhook secret for testing your endpoint locally.
+        // $endpoint_secret = config('gateway.stripe_secret'); //live
+        $endpoint_secret = 'whsec_kH9fWm0mgyWEfI4c8Oka247Jdy9ExTWi'; //test
+
+        $payload    = @file_get_contents('php://input');
+        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
+
+        try {
+            $event = \Stripe\Webhook::constructEvent(
+                $payload,
+                $sig_header,
+                $endpoint_secret
+            );
+        } catch (\UnexpectedValueException $e) {
+            // Invalid payload
+            http_response_code(400);
+            exit();
+        } catch (\Stripe\Exception\SignatureVerificationException $e) {
+            // Invalid signature
+            http_response_code(401);
+            exit();
+        }
+
+        // Handle the event
+        switch ($event->type) {
+                // Cancel subscrption
+            case 'subscription_schedule.canceled':
+                // Trigger a event that will handle that
+                $subscriptionSchedule = $event->data->object;
+                StripeUserSubscriptionCancelEvent::dispatch($subscriptionSchedule);
+            case 'invoice.finalized':
+                $paymentIntent  = $event->data->object;
+                StripeUsePaymentSuccessEvent::dispatch($paymentIntent );
+                // ... handle other event types
+            default:
+                echo 'Received unknown event type ' . $event->type;
+        }
+
+        http_response_code(200);
+    }
+
+    /**
      * Create a stripe log file when the session has been created
      * @param mixed $data
      *
      */
     public function createLog($data)
     {
-        $LogFileName = $data->id.'.log';
+        $LogFileName = $data->id . '.log';
         Storage::put(config('gateway.stripe_log') . $LogFileName, json_encode($data));
     }
 }
