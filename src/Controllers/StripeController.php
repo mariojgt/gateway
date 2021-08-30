@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Events\StripeUsePaymentSuccessEvent;
 use App\Events\StripeUserSubscriptionCancelEvent;
+use App\Events\StripeUserSubscriptionSuccessEvent;
 
 
 class StripeController extends Controller
@@ -112,8 +113,19 @@ class StripeController extends Controller
                 StripeUserSubscriptionCancelEvent::dispatch($subscriptionSchedule);
             case 'invoice.finalized':
                 $paymentIntent  = $event->data->object;
-                StripeUsePaymentSuccessEvent::dispatch($paymentIntent );
-                // ... handle other event types
+                StripeUsePaymentSuccessEvent::dispatch($paymentIntent);
+            case 'subscription_schedule.completed':
+                $subscriptionSchedule = $event->data->object;
+                StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
+            case 'subscription_schedule.created':
+                $subscriptionSchedule = $event->data->object;
+                StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
+            case 'subscription_schedule.released':
+                $subscriptionSchedule = $event->data->object;
+                StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
+            case 'subscription_schedule.updated':
+                $subscriptionSchedule = $event->data->object;
+                StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
             default:
                 echo 'Received unknown event type ' . $event->type;
         }

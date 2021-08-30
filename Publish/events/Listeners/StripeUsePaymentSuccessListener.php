@@ -7,8 +7,10 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Mariojgt\Onixserver\Models\OnixKey;
 use App\Events\StripeUsePaymentSuccessEvent;
+use Mariojgt\Onixserver\Mail\PaymentSuccess;
+use Mariojgt\Onixserver\Controllers\Gateway\GatewayController;
 
-class StripeUsePaymentSuccessEventListener
+class StripeUsePaymentSuccessListener
 {
     /**
      * Create the event listener.
@@ -29,7 +31,8 @@ class StripeUsePaymentSuccessEventListener
      */
     public function handle(StripeUsePaymentSuccessEvent $event)
     {
-        $LogFileName = $event->invoiceObject->id . '_invoice.log';
+        // customize for your needs
+        $LogFileName = $event->invoiceObject->id . '_invoice_fail.log';
         Storage::put(config('gateway.stripe_log') . $LogFileName, json_encode($event->invoiceObject));
     }
 }

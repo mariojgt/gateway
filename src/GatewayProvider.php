@@ -9,6 +9,8 @@ use Mariojgt\Gateway\Commands\Republish;
 use App\Events\StripeUsePaymentSuccessEvent;
 use Mariojgt\Gateway\Events\UserVerifyEvent;
 use App\Events\StripeUserSubscriptionCancelEvent;
+use App\Events\StripeUserSubscriptionSuccessEvent;
+use App\Listeners\StripeUserSubscriptionSuccessListener;
 use Mariojgt\Gateway\Listeners\SendUserVerifyListener;
 use App\Listeners\StripeUsePaymentSuccessEventListener;
 use App\Listeners\StripeUserSubscriptionCancelListener;
@@ -35,10 +37,17 @@ class GatewayProvider extends ServiceProvider
             StripeUserSubscriptionCancelEvent::class,
             [StripeUserSubscriptionCancelListener::class, 'handle']
         );
+
         // Weebhook for when the user complete a payment
         Event::listen(
             StripeUsePaymentSuccessEvent::class,
             [StripeUsePaymentSuccessEventListener::class, 'handle']
+        );
+
+        // Weebhooke for when the user review or compelte a subscprtion
+        Event::listen(
+            StripeUserSubscriptionSuccessEvent::class,
+            [StripeUserSubscriptionSuccessListener::class, 'handle']
         );
     }
 
