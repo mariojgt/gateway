@@ -17,7 +17,7 @@ class StripeController extends Controller
     public function __construct()
     {
         // Start the string with the api key
-        $this->stripe = new StripeClient(config('gateway.stripe_secret'));
+        $this->stripe = new StripeClient(config('gateway.stripe_weebhook_secret'));
     }
 
     /**
