@@ -107,23 +107,21 @@ class StripeController extends Controller
         // Handle the event
         switch ($event->type) {
                 // Cancel subscrption
-            case 'subscription_schedule.canceled':
+            case 'customer.subscription.deleted':
                 // Trigger a event that will handle that
                 $subscriptionSchedule = $event->data->object;
                 StripeUserSubscriptionCancelEvent::dispatch($subscriptionSchedule);
-            case 'invoice.finalized':
+            case 'customer.subscription.trial_will_end':
+                // Trigger a event that will handle that
+                $subscriptionSchedule = $event->data->object;
+                StripeUserSubscriptionCancelEvent::dispatch($subscriptionSchedule);
+            case 'invoice.paid':
                 $paymentIntent  = $event->data->object;
                 StripeUsePaymentSuccessEvent::dispatch($paymentIntent);
-            case 'subscription_schedule.completed':
+            case 'customer.subscription.created':
                 $subscriptionSchedule = $event->data->object;
                 StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
-            case 'subscription_schedule.created':
-                $subscriptionSchedule = $event->data->object;
-                StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
-            case 'subscription_schedule.released':
-                $subscriptionSchedule = $event->data->object;
-                StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
-            case 'subscription_schedule.updated':
+            case 'customer.subscription.updated':
                 $subscriptionSchedule = $event->data->object;
                 StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
             default:
