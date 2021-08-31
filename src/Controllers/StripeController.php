@@ -17,7 +17,7 @@ class StripeController extends Controller
     public function __construct()
     {
         // Start the string with the api key
-        $this->stripe = new StripeClient(config('gateway.stripe_weebhook_secret'));
+        $this->stripe = new StripeClient(config('gateway.stripe_secret'));
     }
 
     /**
@@ -83,7 +83,7 @@ class StripeController extends Controller
     {
         // This is your Stripe CLI webhook secret for testing your endpoint locally.
         // $endpoint_secret = config('gateway.stripe_secret'); //live
-        $endpoint_secret = 'whsec_kH9fWm0mgyWEfI4c8Oka247Jdy9ExTWi'; //test
+        $endpoint_secret = config('gateway.stripe_weebhook_secret'); //test
 
         $payload    = @file_get_contents('php://input');
         $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
