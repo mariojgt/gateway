@@ -12,9 +12,10 @@ return [
     'paypal_live'               => false,                          // If enable transaction will be live
 
     // Stripe key
-    'stripe_secret'        => env('STRIPE_SECRET'),
-    'stripe_secret_public' => env('STRIPE_SECRET_PUBLIC'),
-    'stripe_log' => '/stripe_logs',
+    'stripe_secret'          => env('STRIPE_SECRET'),
+    'stripe_secret_public'   => env('STRIPE_SECRET_PUBLIC'),
+    'stripe_weebhook_secret' => env('STRIPE_WEEBHOOK_SECRET'),
+    'stripe_log'             => '/stripe_logs',
     // Stripe Session Generate route
     'stripe_session_generate' => '/stripe_pay/session_generate',
     // Success Url
