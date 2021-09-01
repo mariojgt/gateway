@@ -118,9 +118,6 @@ class StripeController extends Controller
             case 'invoice.paid':
                 $paymentIntent  = $event->data->object;
                 StripeUsePaymentSuccessEvent::dispatch($paymentIntent);
-            case 'invoice.finalized':
-                $paymentIntent  = $event->data->object;
-                StripeUsePaymentSuccessEvent::dispatch($paymentIntent);
             case 'customer.subscription.created':
                 $subscriptionSchedule = $event->data->object;
                 StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);
