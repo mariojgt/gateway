@@ -31,24 +31,10 @@ class GatewayProvider extends ServiceProvider
         // Load gateway routes
         $this->loadRoutesFrom(__DIR__ . '/Routes/web.php');
 
-        // Stripe events
-        // Weebhook for when the user cancel
-        Event::listen(
-            StripeUserSubscriptionCancelEvent::class,
-            [StripeUserSubscriptionCancelListener::class, 'handle']
-        );
-
-        // Weebhook for when the user complete a payment
-        Event::listen(
-            StripeUsePaymentSuccessEvent::class,
-            [StripeUsePaymentSuccessEventListener::class, 'handle']
-        );
-
-        // Weebhooke for when the user review or compelte a subscprtion
-        Event::listen(
-            StripeUserSubscriptionSuccessEvent::class,
-            [StripeUserSubscriptionSuccessListener::class, 'handle']
-        );
+        // Stripe Weebhooks
+        if (config('gateway.weebhook_enable')) {
+            $this->registerStripeWeebhooksEvents();
+        }
     }
 
     /**
@@ -82,5 +68,33 @@ class GatewayProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../Publish/events/Listeners/' => app_path('Listeners/'),
         ]);
+    }
+
+    /**
+     * Register the stripe gateway weebhooks
+     * those events can be changes once publish to the front end
+     *
+     * @return [type]
+     */
+    public function registerStripeWeebhooksEvents()
+    {
+        // Stripe events
+        // Weebhook for when the user cancel
+        Event::listen(
+            StripeUserSubscriptionCancelEvent::class,
+            [StripeUserSubscriptionCancelListener::class, 'handle']
+        );
+
+        // Weebhook for when the user complete a payment
+        Event::listen(
+            StripeUsePaymentSuccessEvent::class,
+            [StripeUsePaymentSuccessEventListener::class, 'handle']
+        );
+
+        // Weebhooke for when the user review or compelte a subscprtion
+        Event::listen(
+            StripeUserSubscriptionSuccessEvent::class,
+            [StripeUserSubscriptionSuccessListener::class, 'handle']
+        );
     }
 }

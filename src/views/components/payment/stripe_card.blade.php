@@ -1,3 +1,4 @@
+{{-- Required tailwind --}}
 <div class="w-full mx-auto rounded-lg bg-white shadow-lg p-5 m-20 text-gray-700" style="max-width: 600px">
     <div class="w-full pt-1 pb-5">
         <div
@@ -76,7 +77,7 @@
         <div>
             <input
                 class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-                placeholder="John Smith" type="text"  />
+                placeholder="John Smith" type="text" />
         </div>
     </div>
     <div class="mb-3">
@@ -84,9 +85,7 @@
         <div>
             <input
                 class="w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors"
-
-                value="{{ old('number') ?? '' }}"
-                placeholder="0000 0000 0000 0000" type="text" name="number" />
+                value="{{ old('number') ?? '' }}" placeholder="0000 0000 0000 0000" type="text" name="number" />
         </div>
     </div>
     <div class="mb-3 -mx-2 flex items-end">
@@ -95,9 +94,7 @@
             <div>
                 <select
                     class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                    name="exp_month"
-                    value="{{ old('exp_month') ?? '' }}"
-                    >
+                    name="exp_month" value="{{ old('exp_month') ?? '' }}">
                     <option value="01">01 - January</option>
                     <option value="02">02 - February</option>
                     <option value="03">03 - March</option>
@@ -116,9 +113,7 @@
         <div class="px-2 w-1/2">
             <select
                 class="form-select w-full px-3 py-2 mb-1 border-2 border-gray-200 rounded-md focus:outline-none focus:border-indigo-500 transition-colors cursor-pointer"
-                name="exp_year"
-                value="{{ old('exp_year') ?? '' }}"
-                >
+                name="exp_year" value="{{ old('exp_year') ?? '' }}">
                 <option value="2021">2021</option>
                 <option value="2022">2022</option>
                 <option value="2023">2023</option>
@@ -141,7 +136,7 @@
     </div>
     <div>
         <button
-            class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold" type="submit" ><i
-                class="mdi mdi-lock-outline mr-1"></i> PAY NOW</button>
+            class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+            type="submit"><i class="mdi mdi-lock-outline mr-1"></i> PAY NOW</button>
     </div>
 </div>

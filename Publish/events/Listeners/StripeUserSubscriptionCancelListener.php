@@ -29,7 +29,6 @@ class StripeUserSubscriptionCancelListener
      */
     public function handle(StripeUserSubscriptionCancelEvent $event)
     {
-
         // customize for your needs
         $LogFileName = $event->subscrptionObject->subscription . '_cancel_fail.log';
             Storage::put(config('gateway.stripe_log') . $LogFileName, $event->subscrptionObject);

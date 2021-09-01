@@ -2,13 +2,14 @@
 
 namespace Mariojgt\Gateway\Controllers;
 
-use Carbon\Carbon;
-use Stripe\StripeClient;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 
+/**
+ * [Example integration]
+ */
 class GocardlessController extends Controller
 {
     public function __construct()
@@ -32,6 +33,11 @@ class GocardlessController extends Controller
         }
     }
 
+    /**
+     * List all avaliable customers
+     *
+     * @return [type]
+     */
     public function customers()
     {
         return $this->goCardless->customers()->list()->records;
@@ -72,6 +78,6 @@ class GocardlessController extends Controller
     public function createLog($data)
     {
         $LogFileName = $data->id . '.log';
-        Storage::put(config('gateway.stripe_log') . $LogFileName, json_encode($data));
+        Storage::put(config('gateway.go_log') . $LogFileName, json_encode($data));
     }
 }

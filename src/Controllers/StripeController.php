@@ -12,6 +12,10 @@ use App\Events\StripeUserSubscriptionCancelEvent;
 use App\Events\StripeUserSubscriptionSuccessEvent;
 
 
+/**
+ * This Controller comes with the basic for a checkout out of the box
+ * More fuction you need to extend and implement for you needs
+ */
 class StripeController extends Controller
 {
     public function __construct()
@@ -104,7 +108,7 @@ class StripeController extends Controller
             exit();
         }
 
-        // Handle the event
+        // Handle the event note the those are the event name in the stripe weebhooks
         switch ($event->type) {
                 // Cancel subscrption
             case 'customer.subscription.deleted':

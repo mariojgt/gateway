@@ -36,10 +36,12 @@ if (config('gateway.demo_mode')) {
 
 
 // Stripe weebhooks
-Route::group([
-    'middleware' => ['web'],
-], function () {
-    // Stripe webhooks
-    Route::any('/stripe/weebhook', [StripeController::class, 'webhookManager'])
-        ->name('stripe.weebhook');
-});
+if (config('gateway.weebhook_enable')) {
+    Route::group([
+        'middleware' => ['web'],
+    ], function () {
+        // Stripe webhooks
+        Route::any('/stripe/weebhook', [StripeController::class, 'webhookManager'])
+            ->name('stripe.weebhook');
+    });
+}
