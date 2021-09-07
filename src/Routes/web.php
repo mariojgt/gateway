@@ -31,6 +31,9 @@ if (config('gateway.demo_mode')) {
             ->name('gocardless_pay');
         Route::post('/gocardless_pay/setup/debit', [GoCardlessDemoContoller::class, 'debitGenerate'])
             ->name('gocardless_pay.setup.debit');
+        // Redirect example after sucess
+        Route::any('/mandate/success', [GoCardlessDemoContoller::class, 'mandateSuccess'])
+            ->name('success.mandate');
     });
 }
 

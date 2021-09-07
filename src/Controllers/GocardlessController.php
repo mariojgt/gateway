@@ -43,15 +43,21 @@ class GocardlessController extends Controller
         return $this->goCardless->customers()->list()->records;
     }
 
-    public function setupDirectDebit($user)
+    /**
+     * Create a flow that redirect the user to the go cardless page and confirm the payment
+     * @param mixed $user
+     *
+     * @return [type]
+     */
+    public function createFlow($user)
     {
         $redirectFlow = $this->goCardless->redirectFlows()->create([
             "params" => [
                 // This will be shown on the payment pages
                 "description" => "Wine boxes",
-                // Not the access token
+                // The reference that we can use later
                 "session_token"        => Session::get('go_card'),
-                "success_redirect_url" => "https://developer.gocardless.com/example-redirect-uri/",
+                "success_redirect_url" => route(config('gateway.mandate_success')),
                 // Optionally, prefill customer details on the payment page
                 "prefilled_customer" => [
                     "given_name"    => $user['given_name'],
@@ -68,6 +74,56 @@ class GocardlessController extends Controller
         Session::put('go_cardless_id', $redirectFlow->id);
 
         return $redirectFlow;
+    }
+
+    /**
+     * Get basi information about the flow
+     *
+     * @param mixed $id
+     *
+     * @return [type]
+     */
+    public function getFlow($id)
+    {
+        return $this->goCardless->redirectFlows()->get($id);
+    }
+
+    /**
+     * Complete the flow and return the customer id ,mandete and more.
+     * @param mixed $id
+     * @param mixed $session
+     *
+     * @return [type]
+     */
+    public function completeFlow($id, $session)
+    {
+        return $this->goCardless->redirectFlows()->complete($id, [
+            "params" => ["session_token" => $session]
+        ]);
+    }
+
+    /**
+     * Create a paymant agains that user
+     * @param mixed $amount
+     * @param mixed $currency
+     * @param mixed $mandate
+     *
+     * @return [type]
+     */
+    public function createPayment($amount, $currency, $mandate)
+    {
+        return $this->goCardless->payments()->create([
+            "params" => [
+                "amount" => $amount,
+                "currency" => $currency,
+                "metadata" => [
+                    "order_dispatch_date" => "2016-08-04"
+                ],
+                "links" => [
+                    "mandate" => $mandate
+                ]
+            ]
+        ]);
     }
 
     /**

@@ -18,6 +18,7 @@ class StripeDemoContoller extends Controller
 
     public function sessionGenerate(Request $request)
     {
+        dd('here');
         // Start the stripe class
         $stipeManager = new StripeContoller();
         // Cart example, you Must folow this stucture
