@@ -7,7 +7,7 @@ use Stripe\StripeClient;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use App\Events\StripeUsePaymentSuccessEvent;
+use App\Events\StripeUserPaymentSuccessEvent;
 use App\Events\StripeUserSubscriptionCancelEvent;
 use App\Events\StripeUserSubscriptionSuccessEvent;
 
@@ -121,10 +121,10 @@ class StripeController extends Controller
                 StripeUserSubscriptionCancelEvent::dispatch($subscriptionSchedule);
             case 'invoice.payment_succeeded':
                 $paymentIntent  = $event->data->object;
-                StripeUsePaymentSuccessEvent::dispatch($paymentIntent);
+                StripeUserPaymentSuccessEvent::dispatch($paymentIntent);
             case 'invoice.paid':
                 $paymentIntent  = $event->data->object;
-                StripeUsePaymentSuccessEvent::dispatch($paymentIntent);
+                StripeUserPaymentSuccessEvent::dispatch($paymentIntent);
             case 'customer.subscription.created':
                 $subscriptionSchedule = $event->data->object;
                 StripeUserSubscriptionSuccessEvent::dispatch($subscriptionSchedule);

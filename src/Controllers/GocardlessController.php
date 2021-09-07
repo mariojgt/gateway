@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 
 /**
- * [Example integration]
+ * [Go Cardless integration]
  */
 class GocardlessController extends Controller
 {
@@ -49,12 +49,12 @@ class GocardlessController extends Controller
      *
      * @return [type]
      */
-    public function createFlow($user)
+    public function createFlow($user, $description = "Web Payment")
     {
         $redirectFlow = $this->goCardless->redirectFlows()->create([
             "params" => [
                 // This will be shown on the payment pages
-                "description" => "Wine boxes",
+                "description" => $description,
                 // The reference that we can use later
                 "session_token"        => Session::get('go_card'),
                 "success_redirect_url" => route(config('gateway.mandate_success')),
@@ -106,6 +106,7 @@ class GocardlessController extends Controller
      * Create a paymant agains that user
      * @param mixed $amount
      * @param mixed $currency
+     * The paremeter that is created when you setup a bank account in the complete flow method
      * @param mixed $mandate
      *
      * @return [type]
@@ -114,10 +115,10 @@ class GocardlessController extends Controller
     {
         return $this->goCardless->payments()->create([
             "params" => [
-                "amount" => $amount,
+                "amount" => $amount, // In Pence
                 "currency" => $currency,
                 "metadata" => [
-                    "order_dispatch_date" => "2016-08-04"
+                    // "order_dispatch_date" => "2016-08-04" Empty for now
                 ],
                 "links" => [
                     "mandate" => $mandate

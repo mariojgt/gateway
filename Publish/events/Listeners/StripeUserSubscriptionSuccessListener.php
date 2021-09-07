@@ -2,13 +2,8 @@
 
 namespace App\Listeners;
 
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Mariojgt\Onixserver\Models\OnixKey;
 use App\Events\StripeUserSubscriptionSuccessEvent;
-use Mariojgt\Onixserver\Mail\PaymentSuccess;
-use Mariojgt\Onixserver\Controllers\Gateway\GatewayController;
 
 class StripeUserSubscriptionSuccessListener
 {

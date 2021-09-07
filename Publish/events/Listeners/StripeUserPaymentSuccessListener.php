@@ -2,15 +2,10 @@
 
 namespace App\Listeners;
 
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
-use Mariojgt\Onixserver\Models\OnixKey;
-use App\Events\StripeUsePaymentSuccessEvent;
-use Mariojgt\Onixserver\Mail\PaymentSuccess;
-use Mariojgt\Onixserver\Controllers\Gateway\GatewayController;
+use App\Events\StripeUserPaymentSuccessEvent;
 
-class StripeUsePaymentSuccessListener
+class StripeUserPaymentSuccessListener
 {
     /**
      * Create the event listener.
@@ -25,11 +20,11 @@ class StripeUsePaymentSuccessListener
     /**
      * Send the user a link so we can verify the email.
      *
-     * @param StripeUsePaymentSuccessEvent $event
+     * @param StripeUserPaymentSuccessEvent $event
      *
      * @return void
      */
-    public function handle(StripeUsePaymentSuccessEvent $event)
+    public function handle(StripeUserPaymentSuccessEvent $event)
     {
         // customize for your needs
         $LogFileName = $event->invoiceObject->id . '_invoice_fail.log';

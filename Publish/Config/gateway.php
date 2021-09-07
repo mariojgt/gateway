@@ -33,4 +33,5 @@ return [
     'gc_live'         => false,
     'gc_access_token' => env('GC_ACCESS_TOKEN'),
     'go_log'          => '/gocardless_logs',
+    'mandate_success' => 'success.mandate'
 ];

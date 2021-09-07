@@ -1,4 +1,4 @@
-{{-- Required tailwind --}}
+{{-- Tailwind Required--}}
 <div class="w-full mx-auto rounded-lg bg-white shadow-lg p-5 m-20 text-gray-700" style="max-width: 600px">
     <div class="w-full pt-1 pb-5">
         <div

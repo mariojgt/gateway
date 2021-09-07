@@ -4,7 +4,8 @@ namespace Mariojgt\Gateway\Controllers\Demo;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Mariojgt\Gateway\Controllers\StripeContoller;
+use App\Events\StripeUserPaymentSuccessEvent;
+use Mariojgt\Gateway\Controllers\StripeController;
 
 class StripeDemoContoller extends Controller
 {
@@ -13,14 +14,15 @@ class StripeDemoContoller extends Controller
      */
     public function index()
     {
-        return view('gateway::content.index');
+        $paymentIntent = 234234324;
+        StripeUserPaymentSuccessEvent::dispatch($paymentIntent);
+        return view('gateway::content.stripe.index');
     }
 
     public function sessionGenerate(Request $request)
     {
-        dd('here');
         // Start the stripe class
-        $stipeManager = new StripeContoller();
+        $stipeManager = new StripeController();
         // Cart example, you Must folow this stucture
         $cartItem = [
             [

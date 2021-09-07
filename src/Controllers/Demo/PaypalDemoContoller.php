@@ -13,7 +13,7 @@ class PaypalDemoContoller extends Controller
      */
     public function index()
     {
-        return view('gateway::content.paypalIndex');
+        return view('gateway::content.paypal.paypalIndex');
     }
 
     public function checkPayment(Request $request, $orderid)

@@ -15,7 +15,7 @@ class GoCardlessDemoContoller extends Controller
      */
     public function index()
     {
-        return view('gateway::content.gocardless');
+        return view('gateway::content.gocardless.gocardless');
     }
 
     /**
@@ -70,6 +70,6 @@ class GoCardlessDemoContoller extends Controller
         // $completeFlow->links->mandate
         // $completeFlow->links->customer
         // $completeFlow->links->customer_bank_account
-        return view('gateway::content.gocardless_success', compact('completeFlow', 'payment'));
+        return view('gateway::content.gocardless.gocardless_success', compact('completeFlow', 'payment'));
     }
 }
