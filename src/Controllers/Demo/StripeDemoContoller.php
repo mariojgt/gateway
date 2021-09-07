@@ -14,8 +14,6 @@ class StripeDemoContoller extends Controller
      */
     public function index()
     {
-        $paymentIntent = 234234324;
-        StripeUserPaymentSuccessEvent::dispatch($paymentIntent);
         return view('gateway::content.stripe.index');
     }
 
