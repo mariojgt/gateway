@@ -30,7 +30,8 @@ class PaypalContoller extends Controller
     public function checkSession($paymentId)
     {
         // Get the order information
-        $response = Http::withBasicAuth($this->paypal_client_id, $this->paypal_secret)->get($this->paypal_url . '/v2/checkout/orders/' . $paymentId, []);
+        $response = Http::withBasicAuth($this->paypal_client_id, $this->paypal_secret)
+            ->get($this->paypal_url . '/v2/checkout/orders/' . $paymentId, []);
         // Create a log of this order in the system
         $this->createLog($response->json());
 
