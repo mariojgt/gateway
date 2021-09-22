@@ -115,10 +115,10 @@ class GocardlessController extends Controller
     {
         return $this->goCardless->payments()->create([
             "params" => [
-                "amount" => $amount, // In Pence
+                "amount"   => $amount,     // In Pence
                 "currency" => $currency,
                 "metadata" => [
-                    // "order_dispatch_date" => "2016-08-04" Empty for now
+                    "order_dispatch_date" => "2016-08-04" //Empty for now
                 ],
                 "links" => [
                     "mandate" => $mandate
