@@ -44,6 +44,16 @@ class GocardlessController extends Controller
     }
 
     /**
+     * Return all subscriptions creates in the admin panel
+     *
+     * @return [type]
+     */
+    public function plans()
+    {
+        return $this->goCardless->subscriptions()->list()->records;
+    }
+
+    /**
      * Create a flow that redirect the user to the go cardless page and confirm the payment
      * @param mixed $user
      *
@@ -89,6 +99,31 @@ class GocardlessController extends Controller
     }
 
     /**
+     * Get customer payment history
+     * @param mixed $customerId
+     *
+     * @return [type]
+     */
+    public function getPaymentHistory($customerId)
+    {
+        return $this->goCardless->payments()->list([
+            "params" => ["customer" => $customerId]
+          ]);
+    }
+
+    /**
+     * Return mandate information
+     *
+     * @param mixed $id
+     *
+     * @return [type]
+     */
+    public function getMandateInfo($id)
+    {
+        return $this->goCardless->mandates()->get($id);
+    }
+
+    /**
      * Complete the flow and return the customer id ,mandete and more.
      * @param mixed $id
      * @param mixed $session
@@ -100,6 +135,17 @@ class GocardlessController extends Controller
         return $this->goCardless->redirectFlows()->complete($id, [
             "params" => ["session_token" => $session]
         ]);
+    }
+
+    /**
+     * Cancel a user mandate
+     * @param mixed $id
+     *
+     * @return [type]
+     */
+    public function cancelMandate($id)
+    {
+        return $this->goCardless->mandates()->cancel($id);
     }
 
     /**
