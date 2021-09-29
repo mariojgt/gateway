@@ -1,6 +1,9 @@
 <?php
 
 return [
+    // If True Means users can acess the demo
+    'demo_mode'       => true,
+
     // Paypal key
     'paypal_client_id'          => env('PAYPAL_CLIENT_ID'),
     'paypal_secret'             => env('PAYPAL_SECRET'),
@@ -24,16 +27,20 @@ return [
     'cancel_url' => 'https://yoururl.com/cancel',
     // Currency we goin to use to be Process in the cart
     'currency'   => 'GBP',
-    // If True Means users can acess the demo
-    'demo_mode'       => true,
     // If false you weebhooks wont work
-    'weebhook_enable' => true,
+    'stripe_weebhook_enable' => true,
 
     // Go cardless key
     'gc_live'         => false,
     'gc_access_token' => env('GC_ACCESS_TOKEN'),
     'go_log'          => '/gocardless_logs',
-    'mandate_success' => 'success.mandate'
+    'mandate_success' => 'success.mandate',
 
     // Braintree id
+    // Braintree gateway
+    'braintree_environment' => env('BRAINTREE_ENVIRONMENT'),
+    'braintree_merchantId'  => env('BRAINTREE_MERCHANTID'),
+    'braintree_publicKey'   => env('BRAINTREE_PUBLICKEY'),
+    'braintree_privateKey'  => env('BRAINTREE_PRIVATEKEY'),
+    'braintree_log'         => '/braintree_logs',
 ];

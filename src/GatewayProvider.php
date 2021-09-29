@@ -34,7 +34,7 @@ class GatewayProvider extends ServiceProvider
         }
 
         // Stripe Weebhooks
-        if (config('gateway.weebhook_enable')) {
+        if (config('gateway.stripe_weebhook_enable')) {
             // Load the stripe weebhooks events
             $this->registerStripeWeebhooksEventsAndRoute();
         }
