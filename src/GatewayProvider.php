@@ -8,12 +8,20 @@ use Illuminate\Support\ServiceProvider;
 use Mariojgt\Gateway\Commands\Republish;
 use App\Events\StripeUserPaymentSuccessEvent;
 use Mariojgt\Gateway\Events\UserVerifyEvent;
+// Stripe weebwooks events
 use App\Events\StripeUserSubscriptionCancelEvent;
 use App\Events\StripeUserSubscriptionSuccessEvent;
 use App\Listeners\StripeUserSubscriptionSuccessListener;
-use Mariojgt\Gateway\Listeners\SendUserVerifyListener;
 use App\Listeners\StripeUserPaymentSuccessListener;
 use App\Listeners\StripeUserSubscriptionCancelListener;
+
+// Go cardless webwook events
+use App\Events\GocardlessUserSubscriptionSuccessEvent;
+use App\Listeners\GocardlessUserSubscriptionSuccessListener;
+use App\Events\GocardlessUserSubscriptionCancelEvent;
+use App\Listeners\GocardlessUserSubscriptionCancelListener;
+use App\Events\GocardlessUserPaymentErrorEvent;
+use App\Listeners\GocardlessUserPaymentErrorListener;
 
 class GatewayProvider extends ServiceProvider
 {
@@ -37,6 +45,12 @@ class GatewayProvider extends ServiceProvider
         if (config('gateway.stripe_weebhook_enable')) {
             // Load the stripe weebhooks events
             $this->registerStripeWeebhooksEventsAndRoute();
+        }
+
+        // Gocardless Weebhooks
+        if (config('gateway.gocardless_weebhook_enable')) {
+            // Load the gocardless weebhooks events
+            $this->registerGocardlessWeebhooksEventsAndRoute();
         }
     }
 
@@ -102,6 +116,31 @@ class GatewayProvider extends ServiceProvider
         Event::listen(
             StripeUserSubscriptionSuccessEvent::class,
             [StripeUserSubscriptionSuccessListener::class, 'handle']
+        );
+    }
+
+    public function registerGocardlessWeebhooksEventsAndRoute()
+    {
+        // Load the weebhooke route
+        $this->loadRoutesFrom(__DIR__ . '/Routes/gocardweb.php');
+
+        // Gocardless weebhoock events
+        // Weebhook for when the user confirm Subscription
+        Event::listen(
+            GocardlessUserSubscriptionSuccessEvent::class,
+            [GocardlessUserSubscriptionSuccessListener::class, 'handle']
+        );
+
+        // Weebhook for when the user cancel Subscrption
+        Event::listen(
+            GocardlessUserSubscriptionCancelEvent::class,
+            [GocardlessUserSubscriptionCancelListener::class, 'handle']
+        );
+
+        // Event from when the user have a canceled payment
+        Event::listen(
+            GocardlessUserPaymentErrorEvent::class,
+            [GocardlessUserPaymentErrorListener::class, 'handle']
         );
     }
 }

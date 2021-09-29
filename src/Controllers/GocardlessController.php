@@ -5,7 +5,10 @@ namespace Mariojgt\Gateway\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Http\Request;
+use App\Events\GocardlessUserSubscriptionSuccessEvent;
+use App\Events\GocardlessUserSubscriptionCancelEvent;
+use App\Events\GocardlessUserPaymentErrorEvent;
 
 /**
  * [Go Cardless integration]
@@ -108,7 +111,7 @@ class GocardlessController extends Controller
     {
         return $this->goCardless->payments()->list([
             "params" => ["customer" => $customerId]
-          ]);
+        ]);
     }
 
     /**
@@ -181,6 +184,74 @@ class GocardlessController extends Controller
     public function createLog($data)
     {
         $LogFileName = $data->id . '.log';
-        Storage::put(config('gateway.go_log') . $LogFileName, json_encode($data));
+        Storage::put(config('gateway.go_log'). '/' . $LogFileName, json_encode($data));
+    }
+
+    /**
+     * Handle go cardless webhook
+     * @param Request $request
+     *
+     * @return [type]
+     */
+    public function webhookManager(Request $request)
+    {
+        // We recommend storing your webhook endpoint secret in an environment variable
+        // for security
+        $webhook_endpoint_secret = config('gateway.gocardless_webhook_endpoint_secret');
+        $request_body            = file_get_contents('php://input');
+
+        $headers = getallheaders();
+        $signature_header = $headers["Webhook-Signature"];
+
+        try {
+            $events = \GoCardlessPro\Webhook::parse(
+                $request_body,
+                $signature_header,
+                $webhook_endpoint_secret
+            );
+            // Events handle
+            foreach ($events as $key => $event) {
+                // Handle the weebhook type
+                switch ($event->resource_type) {
+                    case 'subscriptions':
+                        switch ($event->action) {
+                            case 'created':
+                                GocardlessUserSubscriptionSuccessEvent::dispatch($event);
+                //                 $LogFileName = 'weebhook.log';
+                // Storage::put(config('gateway.go_log') . $LogFileName, json_encode($event->resource_type));
+                                break;
+                            case 'cancelled':
+                                GocardlessUserSubscriptionCancelEvent::dispatch($event);
+                                break;
+                            default:
+                                # code...
+                                break;
+                        }
+                        break;
+                    case 'payments':
+                        switch ($event->action) {
+                            case 'failed':
+                                GocardlessUserPaymentErrorEvent::dispatch($event);
+                                break;
+                            default:
+                                # code...
+                                break;
+                        }
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+
+                // Process the events...
+                // $LogFileName = 'weebhook.log';
+                // Storage::put(config('gateway.go_log') . $LogFileName, json_encode($event->resource_type));
+            }
+
+
+            header("HTTP/1.1 204 No Content");
+        } catch (\GoCardlessPro\Core\Exception\InvalidSignatureException $e) {
+            header("HTTP/1.1 498 Invalid Token");
+        }
     }
 }

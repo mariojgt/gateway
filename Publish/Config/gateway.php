@@ -31,10 +31,13 @@ return [
     'stripe_weebhook_enable' => true,
 
     // Go cardless key
-    'gc_live'         => false,
-    'gc_access_token' => env('GC_ACCESS_TOKEN'),
-    'go_log'          => '/gocardless_logs',
-    'mandate_success' => 'success.mandate',
+    'gc_live'                            => false,
+    'gc_access_token'                    => env('GC_ACCESS_TOKEN'),
+    'gocardless_webhook_endpoint_secret' => env('GOCARDLESS_WEBHOOK_ENDPOINT_SECRET'),
+    'go_log'                             => '/gocardless_logs',
+    'mandate_success'                    => 'success.mandate',
+    // If false you weebhooks wont work
+    'gocardless_weebhook_enable' => true,
 
     // Braintree id
     // Braintree gateway
