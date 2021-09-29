@@ -119,6 +119,13 @@ class GatewayProvider extends ServiceProvider
         );
     }
 
+    /**
+     * Register the gocardless gateway weebhooks
+     * those events can be changes once publish to the front end
+     * also register the route
+     *
+     * @return [type]
+     */
     public function registerGocardlessWeebhooksEventsAndRoute()
     {
         // Load the weebhooke route

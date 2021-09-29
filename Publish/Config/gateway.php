@@ -2,7 +2,7 @@
 
 return [
     // If True Means users can acess the demo
-    'demo_mode'       => true,
+    'demo_mode'       => false,
 
     // Paypal key
     'paypal_client_id'          => env('PAYPAL_CLIENT_ID'),
@@ -35,7 +35,7 @@ return [
     'gc_access_token'                    => env('GC_ACCESS_TOKEN'),
     'gocardless_webhook_endpoint_secret' => env('GOCARDLESS_WEBHOOK_ENDPOINT_SECRET'),
     'go_log'                             => '/gocardless_logs',
-    'mandate_success'                    => 'success.mandate',
+    'mandate_success'                    => env('GC_MANDATE_SUCCESS_PAGE') ?? 'success.mandate',
     // If false you weebhooks wont work
     'gocardless_weebhook_enable' => true,
 
