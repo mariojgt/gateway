@@ -160,13 +160,14 @@ class GocardlessController extends Controller
      *
      * @return [type]
      */
-    public function createPayment($amount, $currency, $mandate)
+    public function createPayment($amount, $currency, $mandate, $description = "online")
     {
         return $this->goCardless->payments()->create([
             "params" => [
-                "amount"   => $amount,     // In Pence
-                "currency" => $currency,
-                "metadata" => [
+                "amount"      => $amount,        // In Pence
+                "currency"    => $currency,
+                "description" => $description,
+                "metadata"    => [
                     "order_dispatch_date" => "2016-08-04" //Empty for now
                 ],
                 "links" => [
