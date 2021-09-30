@@ -14,8 +14,9 @@
     ],
     "require":{
         "php": "^7.3|^8.0",
-        "stripe/stripe-php": "^7.3",
-        "gocardless/gocardless-pro": "^4.12"
+        "stripe/stripe-php": "^7.97.0",
+        "gocardless/gocardless-pro": "^4.12",
+        "braintree/braintree_php": "^6.4.1"
     },
     "autoload": {
         "psr-4": {
