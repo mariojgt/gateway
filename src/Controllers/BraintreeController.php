@@ -25,10 +25,10 @@ class BraintreeController extends Controller
     {
         // Start the gateway
         $this->gateway = new Gateway([
-            'environment' => config('braintree.braintree_environment'),
-            'merchantId'  => config('braintree.braintree_merchantId'),
-            'publicKey'   => config('braintree.braintree_publicKey'),
-            'privateKey'  => config('braintree.braintree_privateKey'),
+            'environment' => config('gateway.braintree_environment'),
+            'merchantId'  => config('gateway.braintree_merchantId'),
+            'publicKey'   => config('gateway.braintree_publicKey'),
+            'privateKey'  => config('gateway.braintree_privateKey'),
         ]);
     }
 

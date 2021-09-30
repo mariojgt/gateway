@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Mariojgt\Gateway\Controllers\Demo\PaypalDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\StripeDemoContoller;
+use Mariojgt\Gateway\Controllers\Demo\BraintreeDemoController;
 use Mariojgt\Gateway\Controllers\Demo\GoCardlessDemoContoller;
 
 
@@ -29,4 +30,10 @@ Route::group([
     // Redirect example after sucess
     Route::any('/mandate/success', [GoCardlessDemoContoller::class, 'mandateSuccess'])
         ->name('success.mandate');
+
+    // Braintree Example
+    Route::get('/braintree', [BraintreeDemoController::class, 'index'])
+        ->name('braintree');
+    Route::post('/braintree/example/pay', [BraintreeDemoController::class, 'makePayment'])
+        ->name('braintree.example.pay');
 });

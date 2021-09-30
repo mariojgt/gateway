@@ -2,7 +2,7 @@
 
 return [
     // If True Means users can acess the demo
-    'demo_mode'       => false,
+    'demo_mode'       => true,
 
     // Paypal key
     'paypal_client_id'          => env('PAYPAL_CLIENT_ID'),
