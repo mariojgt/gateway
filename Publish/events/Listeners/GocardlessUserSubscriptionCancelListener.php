@@ -27,7 +27,7 @@ class GocardlessUserSubscriptionCancelListener
     public function handle(GocardlessUserSubscriptionCancelEvent $event)
     {
         // Find that user key so we can update the subscription
-        $LogFileName = $event->subscription->id . 'subscription_cancelEvent.log';
+        $LogFileName = $event->subscription->id . '_gocardless_subscription_cancel.log';
         Storage::put(config('gateway.go_log'). '/' . $LogFileName, $event->subscription->links->subscription);
     }
 }

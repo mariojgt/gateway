@@ -27,7 +27,7 @@ class GocardlessUserSubscriptionSuccessListener
     public function handle(GocardlessUserSubscriptionSuccessEvent $event)
     {
         // Find that user key so we can update the subscription
-        $LogFileName = $event->subscription->id . 'subscription_successEvent.log';
+        $LogFileName = $event->subscription->id . '_gocardless_subscription_success.log';
         Storage::put(config('gateway.go_log') . '/' . $LogFileName, $event->subscription->links->subscription);
     }
 }

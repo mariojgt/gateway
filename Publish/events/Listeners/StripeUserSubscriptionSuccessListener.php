@@ -27,7 +27,7 @@ class StripeUserSubscriptionSuccessListener
     public function handle(StripeUserSubscriptionSuccessEvent $event)
     {
         // Find that user key so we can update the subscription
-        $LogFileName = $event->subscription->subscription . 'subscprtion_error.log';
-        Storage::put(config('gateway.stripe_log') . $LogFileName, json_encode($event->subscription));
+        $LogFileName = $event->subscription->subscription . '_stripe_subscription_success.log';
+        Storage::put(config('gateway.stripe_log') . '/' . $LogFileName, json_encode($event->subscription));
     }
 }

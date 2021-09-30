@@ -27,7 +27,7 @@ class StripeUserPaymentSuccessListener
     public function handle(StripeUserPaymentSuccessEvent $event)
     {
         // customize for your needs
-        $LogFileName = $event->invoiceObject->id . '_invoice_fail.log';
-        Storage::put(config('gateway.stripe_log') . $LogFileName, json_encode($event->invoiceObject));
+        $LogFileName = $event->invoiceObject->id . '_stripe_payment_sucess.log';
+        Storage::put(config('gateway.stripe_log') . '/' . $LogFileName, json_encode($event->invoiceObject));
     }
 }

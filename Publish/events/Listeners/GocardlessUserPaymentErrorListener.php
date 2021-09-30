@@ -27,7 +27,7 @@ class GocardlessUserPaymentErrorListener
     public function handle(GocardlessUserPaymentErrorEvent $event)
     {
         // Find that user key so we can update the subscription
-        $LogFileName = $event->subscription->id . 'payment_error.log';
+        $LogFileName = $event->subscription->id . '_gocardless_payment_error.log';
         Storage::put(config('gateway.go_log') . '/' . $LogFileName, $event->subscription->links->payment);
     }
 }
