@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Payment Example</title>
+    <title>Braintree payment Example</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -23,7 +21,9 @@
                 <div class="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
                     @if (empty(config('gateway.braintree_privateKey')))
                     <p class="text-red-800 font-medium">
-                        Please add cardless token in the .env file.
+                        Please add braintree token in the .env file, if you don't have a token please visit
+                        <a target="_blank"
+                            href="https://sandbox.braintreegateway.com">https://sandbox.braintreegateway.com</a>
                     </p>
                     @else
                     <p class="text-gray-800 font-medium">Customer information</p>

@@ -21,12 +21,13 @@ class BraintreeDemoController extends Controller
 
     public function makePayment(Request $request)
     {
+        // Start the braintree helper that contains all the required logic to create payments
         $braintreeController = new BraintreeController();
 
         // Example payment array
         $paymentExample = [
-            'amount'             => 20.21,
-            'paymentMethodNonce' => Request('payment_method_nonce'),
+            'amount'             => 20.21, // Amount you wish to pay
+            'paymentMethodNonce' => Request('payment_method_nonce'), // Generate by the droppin
             'customer'           => [
                 'firstName' => Request('first_name'),
                 'lastName'  => Request('last_name'),
@@ -61,7 +62,7 @@ class BraintreeDemoController extends Controller
                 'submitForSettlement' => true
             ]
         ];
-
+        // Try to pay the transaction
         $result = $braintreeController->payTransaction($paymentExample);
 
         dd($result, 'Example braintree payment');

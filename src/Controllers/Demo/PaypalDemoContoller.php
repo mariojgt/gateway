@@ -22,6 +22,7 @@ class PaypalDemoContoller extends Controller
         $paypalManager = new PaypalContoller();
         $paypalInfo    = $paypalManager->checkSession($orderid);
 
+
         return response()->json([
             'data' => $paypalInfo,
         ]);

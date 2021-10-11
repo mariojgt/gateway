@@ -2,12 +2,14 @@
 
 namespace Mariojgt\Gateway\Controllers;
 
+use DateTime;
 use Carbon\Carbon;
+use Braintree\Gateway;
 use Stripe\StripeClient;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-use Braintree\Gateway;
+use Illuminate\Support\Str;
 
 /**
  * This Controller comes with the basic for a checkout out of the box
@@ -117,9 +119,15 @@ class BraintreeController extends Controller
      */
     public function createLog($data)
     {
-        $LogFileName = $data->transaction->id . '_payment.log';
+        $date      = new DateTime();
+        $date      = $date->format("y:m:d h:i:s");
+        $errorFile = $slug = Str::slug('error_' . $date, '-');
+
+        $LogFileName = $data->transaction->id ?? $errorFile . '_payment.log';
+
         Storage::put(
-            'braintree/'.config('gateway.braintree_log') . $LogFileName, json_encode($data->transaction)
+            'braintree/' . config('gateway.braintree_log') . $LogFileName,
+            json_encode($data)
         );
     }
 }
