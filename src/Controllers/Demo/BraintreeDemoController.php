@@ -65,6 +65,7 @@ class BraintreeDemoController extends Controller
         // Try to pay the transaction
         $result = $braintreeController->payTransaction($paymentExample);
 
-        dd($result, 'Example braintree payment');
+
+        return view('gateway::content.braintree.responsePage', compact('result'));
     }
 }

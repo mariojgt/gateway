@@ -4,7 +4,7 @@ return [
     // If True Means users can acess the demo
     'demo_mode'       => true,
 
-    // Paypal key
+    // PAYPAL KEY
     'paypal_client_id'          => env('PAYPAL_CLIENT_ID'),
     'paypal_secret'             => env('PAYPAL_SECRET'),
     // paypal log file location default storage/app/stripe_logs
@@ -14,7 +14,7 @@ return [
     'paypal_complete'           => '/checkout/complete',           // can be use to rollback a order
     'paypal_live'               => false,                          // If enable transaction will be live
 
-    // Stripe key
+    // STRIPE KEY
     'stripe_secret'          => env('STRIPE_SECRET'),            // Secret
     'stripe_secret_public'   => env('STRIPE_SECRET_PUBLIC'),     // Public key
     'stripe_weebhook_secret' => env('STRIPE_WEEBHOOK_SECRET'),   // Weebhook key
@@ -30,7 +30,7 @@ return [
     // If false you weebhooks wont work
     'stripe_weebhook_enable' => true,
 
-    // Go cardless key
+    // GO CARDLESS KEY
     'gc_live'                            => false,
     'gc_access_token'                    => env('GC_ACCESS_TOKEN'),
     'gocardless_webhook_endpoint_secret' => env('GOCARDLESS_WEBHOOK_ENDPOINT_SECRET'),
@@ -39,8 +39,7 @@ return [
     // If false you weebhooks wont work
     'gocardless_weebhook_enable' => true,
 
-    // Braintree id
-    // Braintree gateway
+    // BRAINTREE
     'braintree_environment' => env('BRAINTREE_ENVIRONMENT'),
     'braintree_merchantId'  => env('BRAINTREE_MERCHANTID'),
     'braintree_publicKey'   => env('BRAINTREE_PUBLICKEY'),

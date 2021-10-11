@@ -119,11 +119,18 @@ class BraintreeController extends Controller
      */
     public function createLog($data)
     {
+        // Get the currenct date so we can create a log file
         $date      = new DateTime();
         $date      = $date->format("y:m:d h:i:s");
-        $errorFile = $slug = Str::slug('error_' . $date, '-');
 
-        $LogFileName = $data->transaction->id ?? $errorFile . '_payment.log';
+        if ($data->success) {
+            $fileName = $slug = Str::slug('sucess_' . $date, '-');
+        } else {
+            $fileName = $slug = Str::slug('error_' . $date, '-');
+        }
+
+        // Create the name of the log file
+        $LogFileName = $fileName . '_payment.log';
 
         Storage::put(
             'braintree/' . config('gateway.braintree_log') . $LogFileName,
