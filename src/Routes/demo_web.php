@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Mariojgt\Gateway\Controllers\SumUpController;
 use Mariojgt\Gateway\Controllers\Demo\PaypalDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\StripeDemoContoller;
+use Mariojgt\Gateway\Controllers\Demo\SumUpDemoController;
 use Mariojgt\Gateway\Controllers\Demo\BraintreeDemoController;
 use Mariojgt\Gateway\Controllers\Demo\GoCardlessDemoContoller;
 
@@ -36,4 +38,10 @@ Route::group([
         ->name('braintree');
     Route::post('/braintree/example/pay', [BraintreeDemoController::class, 'makePayment'])
         ->name('braintree.example.pay');
+
+    // SumUp Example
+    // Route::get('/sumup', [SumUpDemoController::class, 'index'])
+    //     ->name('sumup');
+    // Route::post('/sumup/pay', [SumUpDemoController::class, 'pay'])
+    //     ->name('sumup.pay');
 });

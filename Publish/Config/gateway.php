@@ -45,4 +45,8 @@ return [
     'braintree_publicKey'   => env('BRAINTREE_PUBLICKEY'),
     'braintree_privateKey'  => env('BRAINTREE_PRIVATEKEY'),
     'braintree_log'         => '/braintree_logs',
+
+    // Sumup
+    'sumup_client_id'     => env('SUMUP_CLIENT_ID'),
+    'sumup_client_secret' => env('SUMUP_CLIENT_SECRET'),
 ];
