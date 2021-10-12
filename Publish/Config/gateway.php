@@ -1,7 +1,7 @@
 <?php
 
 return [
-    // If True Means users can acess the demo
+    // If True Means users can acess the demo page
     'demo_mode'       => true,
 
     // PAYPAL KEY
@@ -19,7 +19,7 @@ return [
     'stripe_secret_public'   => env('STRIPE_SECRET_PUBLIC'),     // Public key
     'stripe_weebhook_secret' => env('STRIPE_WEEBHOOK_SECRET'),   // Weebhook key
     'stripe_log'             => '/stripe_logs',
-    // Stripe Session Generate route
+    // Stripe Session Generate route (This is where you will create the pre payment array information)
     'stripe_session_generate' => '/stripe_pay/session_generate',
     // Success Url
     'success_url' => 'https://yoururl.com/success',

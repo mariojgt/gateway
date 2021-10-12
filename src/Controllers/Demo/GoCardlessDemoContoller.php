@@ -50,7 +50,8 @@ class GoCardlessDemoContoller extends Controller
     }
 
     /**
-     * Confirm the flow paymante and create a paymant example
+     * Confirm the flow mandate and create a paymant example
+     * Note that when you complete the flow you can store that id to autorize payments and subscprtions
      *
      * @param Request $request
      *

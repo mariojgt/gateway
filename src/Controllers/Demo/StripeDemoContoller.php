@@ -4,7 +4,6 @@ namespace Mariojgt\Gateway\Controllers\Demo;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Events\StripeUserPaymentSuccessEvent;
 use Mariojgt\Gateway\Controllers\StripeController;
 
 class StripeDemoContoller extends Controller
@@ -17,6 +16,13 @@ class StripeDemoContoller extends Controller
         return view('gateway::content.stripe.index');
     }
 
+    /**
+     * This Fuction will generate a session with the payment information live value and etc
+     * so the dropping will redirect the user to stripe so we can complete the order
+     * @param Request $request
+     *
+     * @return [type]
+     */
     public function sessionGenerate(Request $request)
     {
         // Start the stripe class

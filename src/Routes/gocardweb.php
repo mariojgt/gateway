@@ -7,7 +7,7 @@ use Mariojgt\Gateway\Controllers\GocardlessController;
 Route::group([
     'middleware' => ['web'],
 ], function () {
-    // Stripe webhooks
+    // Gocardless webhooks
     Route::any('/gocardless/weebhook', [GocardlessController::class, 'webhookManager'])
         ->name('gocardless.weebhook');
 });

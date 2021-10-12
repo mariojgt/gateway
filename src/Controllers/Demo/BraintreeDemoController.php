@@ -19,6 +19,12 @@ class BraintreeDemoController extends Controller
         return view('gateway::content.braintree.braintree');
     }
 
+    /**
+     * This Fuction will make a payment on braintree and return a object in case of sucess or error
+     * @param Request $request
+     *
+     * @return [type]
+     */
     public function makePayment(Request $request)
     {
         // Start the braintree helper that contains all the required logic to create payments

@@ -16,12 +16,18 @@ class PaypalDemoContoller extends Controller
         return view('gateway::content.paypal.paypalIndex');
     }
 
+    /**
+     * Note that paypal payments are create using the javascript api
+     * @param Request $request
+     * @param mixed $orderid
+     *
+     * @return [type]
+     */
     public function checkPayment(Request $request, $orderid)
     {
         // Start the paypal class
         $paypalManager = new PaypalContoller();
         $paypalInfo    = $paypalManager->checkSession($orderid);
-
 
         return response()->json([
             'data' => $paypalInfo,

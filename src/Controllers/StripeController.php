@@ -32,6 +32,8 @@ class StripeController extends Controller
      */
     public function process($cartItem)
     {
+        // More information
+        // https://stripe.com/docs/api/checkout/sessions/create?lang=php
         // Example Cart Sturcture
         // [
         //     'name'        => 'kit kat',
@@ -86,12 +88,12 @@ class StripeController extends Controller
     public function webhookManager(Request $request)
     {
         // This is your Stripe CLI webhook secret for testing your endpoint locally.
-        // $endpoint_secret = config('gateway.stripe_secret'); //live
-        $endpoint_secret = config('gateway.stripe_weebhook_secret'); //test
+        // Weebhook secret goes here
+        $endpoint_secret = config('gateway.stripe_weebhook_secret');
+        $payload         = @file_get_contents('php://input');
+        $sig_header      = $_SERVER['HTTP_STRIPE_SIGNATURE'];
 
-        $payload    = @file_get_contents('php://input');
-        $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
-
+        // Make sure it has a valid response
         try {
             $event = \Stripe\Webhook::constructEvent(
                 $payload,

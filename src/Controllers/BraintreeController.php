@@ -124,9 +124,9 @@ class BraintreeController extends Controller
         $date      = $date->format("y:m:d h:i:s");
 
         if ($data->success) {
-            $fileName = $slug = Str::slug('sucess_' . $date, '-');
+            $fileName = Str::slug('sucess_' . $date, '-');
         } else {
-            $fileName = $slug = Str::slug('error_' . $date, '-');
+            $fileName = Str::slug('error_' . $date, '-');
         }
 
         // Create the name of the log file

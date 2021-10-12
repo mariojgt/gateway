@@ -7,7 +7,7 @@ use Mariojgt\Gateway\Controllers\Demo\BraintreeDemoController;
 use Mariojgt\Gateway\Controllers\Demo\GoCardlessDemoContoller;
 
 
-// Demo
+// THOSE ROUTES HAVE ONLY THE PURPOSE DEMONSTRATION HOW THOSE INTEGRATIONS WORKS
 Route::group([
     'middleware' => ['web']
 ], function () {
