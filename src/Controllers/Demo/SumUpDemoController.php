@@ -22,16 +22,30 @@ class SumUpDemoController extends Controller
 
     public function pay(Request $request)
     {
+        dd('not read');
         $sumUp = new SumUpController();
         $paymentItem = [
-            "checkout_reference" => "CCTPNDZ6",
+            "checkout_reference" => Str::random(10),
             "amount"             => 10,
             "currency"           => "GBP",
-            "pay_to_email"       => "docuser@sumup.com",
+            "pay_to_email"       => "sumup@sumup.com", // Note this is you email you use to login in the sumup
             "description"        => "Sample one-time payment"
         ];
 
-        dd($sumUp->createCheckout($paymentItem));
-        dd(Request()->all());
+        $checkout = $sumUp->createCheckout($paymentItem);
+        // the payment card deatils
+        $cardInfo = [
+            'payment_type' => 'card',
+            'card' => [
+                'name'         => 'Dominik Biermann',
+                'number'       => '4485618386833995',
+                'expiry_month' => '05',
+                'expiry_year'  => '20',
+                'cvv'          => '257'
+            ]
+        ];
+
+        $paymentInfo = $sumUp->makePayment($checkout['id'], $cardInfo);
+        dd($paymentInfo);
     }
 }

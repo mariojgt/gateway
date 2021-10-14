@@ -36,10 +36,30 @@ class SumUpController extends Controller
 
     public function createCheckout($paymentInfo)
     {
-
         $token = $this->tokenBearerGenerate();
         $response = Http::withToken($token['access_token'])->post('https://api.sumup.com/v0.1/checkouts', [
-            'body' => json_encode($paymentInfo)
+            'checkout_reference' => $paymentInfo['checkout_reference'],
+            'amount'             => $paymentInfo['amount'],
+            'currency'           => $paymentInfo['currency'],
+            'pay_to_email'       => $paymentInfo['pay_to_email'],
+            'description'        => $paymentInfo['description'],
+        ]);
+
+        return $response->json();
+    }
+
+    public function makePayment($checkoutId, $cardInformation)
+    {
+        $token    = $this->tokenBearerGenerate();
+        $response = Http::withToken($token['access_token'])->put('https://api.sumup.com/v0.1/checkouts/' . $checkoutId, [
+            'payment_type' => $cardInformation['payment_type'],
+            'card' => [
+                'name'         => $cardInformation['card']['name'],
+                'number'       => $cardInformation['card']['number'],
+                'expiry_month' => $cardInformation['card']['expiry_month'],
+                'expiry_year'  => $cardInformation['card']['expiry_year'],
+                'cvv'          => $cardInformation['card']['cvv'],
+            ]
         ]);
         dd($response->json());
     }
