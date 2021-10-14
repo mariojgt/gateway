@@ -10,7 +10,9 @@
 </head>
 
 <body>
-
+    @php
+        $amountYouWantToPay = "20.25";
+    @endphp
     <!-- component -->
     <div class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
         style="background-image: url(https://images.unsplash.com/photo-1604262725913-1c415cd27564?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2142&q=80);"
@@ -54,7 +56,7 @@
                                             INSTOCK</div>
                                     </div>
                                 </div>
-                                <div class="text-xl text-white font-semibold mt-1">$10.00</div>
+                                <div class="text-xl text-white font-semibold mt-1">${{ $amountYouWantToPay }}</div>
                                 <div class="lg:flex  py-4  text-sm text-gray-600">
                                     <div class="flex-1 inline-flex items-center  mb-3">
                                         <div class="w-full flex-none text-sm flex items-center text-gray-600">
@@ -101,9 +103,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex space-x-2 text-sm font-medium justify-start">
+                                <div class="">
                                         {{-- call the x component that include the RegenerateSessionAndRedirect method --}}
-                                        <x-gateway::pay_paypal />
+                                        <x-gateway::pay_paypal amount="{{ $amountYouWantToPay }}" />
                                     </button>
 
                                 </div>

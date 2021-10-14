@@ -1,5 +1,5 @@
-{{-- Start Stripe --}}
-{{-- This Component will load all the needed values so the user can pay with stripe --}}
+{{-- Start paypal --}}
+{{-- This Component will load all the needed values so the user can pay with paypal --}}
 <div id="paypal-button-container"></div>
 
 @if (config('gateway.paypal_debug'))
