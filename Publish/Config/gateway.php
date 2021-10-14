@@ -5,8 +5,10 @@ return [
     'demo_mode'       => true,
 
     // PAYPAL KEY
-    'paypal_client_id'          => env('PAYPAL_CLIENT_ID'),
-    'paypal_secret'             => env('PAYPAL_SECRET'),
+    'paypal_client_id' => env('PAYPAL_CLIENT_ID'),
+    'paypal_secret'    => env('PAYPAL_SECRET'),
+    'paypal_currency'  => 'GBP',
+    'paypal_debug'     => true,
     // paypal log file location default storage/app/stripe_logs
     'paypal_log'                => '//paypal_logs//', // Login information
     'paypal_session_generate'   => '/paypal/generate/session',     // can be use to pregenerate a order

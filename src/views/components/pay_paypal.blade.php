@@ -2,9 +2,15 @@
 {{-- This Component will load all the needed values so the user can pay with stripe --}}
 <div id="paypal-button-container"></div>
 
+@if (config('gateway.paypal_debug'))
 <script
-    src="{{ 'https://www.paypal.com/sdk/js?client-id=' . config('gateway.paypal_client_id') . '&currency=GBP&debug=true' }}">
+    src="{{ 'https://www.paypal.com/sdk/js?client-id=' . config('gateway.paypal_client_id') . '&currency=' . config('gateway.paypal_currency') . '&debug=true' }}">
 </script>
+@else
+<script
+    src="{{ 'https://www.paypal.com/sdk/js?client-id=' . config('gateway.paypal_client_id') . '&currency=' . config('gateway.paypal_currency') . '&debug=false' }}">
+</script>
+@endif
 
 <script>
     paypal.Buttons({
