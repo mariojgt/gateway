@@ -40,8 +40,8 @@ Route::group([
         ->name('braintree.example.pay');
 
     // SumUp Example
-    // Route::get('/sumup', [SumUpDemoController::class, 'index'])
-    //     ->name('sumup');
-    // Route::post('/sumup/pay', [SumUpDemoController::class, 'pay'])
-    //     ->name('sumup.pay');
+    Route::get('/sumup', [SumUpDemoController::class, 'index'])
+        ->name('sumup');
+    Route::post('/sumup/pay', [SumUpDemoController::class, 'pay'])
+        ->name('sumup.pay');
 });

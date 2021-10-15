@@ -61,6 +61,7 @@ class SumUpController extends Controller
                 'cvv'          => $cardInformation['card']['cvv'],
             ]
         ]);
-        dd($response->json());
+
+        return $response->json();
     }
 }

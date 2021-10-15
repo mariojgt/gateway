@@ -19,11 +19,11 @@
             <form id="payment-form" action="{{ route('sumup.pay') }}" method="POST">
                 @csrf
                 <div class="max-w-xl m-4 p-10 bg-white rounded shadow-xl">
-                    @if (empty(config('gateway.braintree_privateKey')))
+                    @if (empty(config('gateway.sumup_client_secret')))
                     <p class="text-red-800 font-medium">
-                        Please add braintree token in the .env file, if you don't have a token please visit
+                        Please add sumup token in the .env file, if you don't have a token please visit
                         <a target="_blank"
-                            href="https://sandbox.braintreegateway.com">https://sandbox.braintreegateway.com</a>
+                            href="https://me.sumup.com/en-us">https://me.sumup.com/en-us</a>
                     </p>
                     @else
                     <p class="text-gray-800 font-medium">Customer information</p>

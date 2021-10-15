@@ -22,17 +22,17 @@ class SumUpDemoController extends Controller
 
     public function pay(Request $request)
     {
-        dd('not read');
         $sumUp = new SumUpController();
         $paymentItem = [
             "checkout_reference" => Str::random(10),
             "amount"             => 10,
             "currency"           => "GBP",
-            "pay_to_email"       => "sumup@sumup.com", // Note this is you email you use to login in the sumup
+            "pay_to_email"       => "mariojgt2-test@sumup.com", // Note this is you email you use to login in the sumup
             "description"        => "Sample one-time payment"
         ];
 
         $checkout = $sumUp->createCheckout($paymentItem);
+
         // the payment card deatils
         $cardInfo = [
             'payment_type' => 'card',
@@ -46,6 +46,7 @@ class SumUpDemoController extends Controller
         ];
 
         $paymentInfo = $sumUp->makePayment($checkout['id'], $cardInfo);
-        dd($paymentInfo);
+
+        return view('gateway::content.sumup.responsePage', compact('paymentInfo'));
     }
 }
