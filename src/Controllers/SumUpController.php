@@ -64,4 +64,12 @@ class SumUpController extends Controller
 
         return $response->json();
     }
+
+    public function checkCheckout($checkoutId)
+    {
+        $token    = $this->tokenBearerGenerate();
+        $response = Http::withToken($token['access_token'])->get('https://api.sumup.com/v0.1/checkouts/' . $checkoutId, []);
+
+        return $response->json();
+    }
 }
