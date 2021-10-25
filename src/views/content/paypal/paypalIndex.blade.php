@@ -11,7 +11,7 @@
 
 <body>
     @php
-        $amountYouWantToPay = "20.25";
+    $amountYouWantToPay = "20.25";
     @endphp
     <!-- component -->
     <div class="min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-no-repeat bg-center bg-cover"
@@ -104,8 +104,8 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                        {{-- call the x component that include the RegenerateSessionAndRedirect method --}}
-                                        <x-gateway::pay_paypal amount="{{ $amountYouWantToPay }}" />
+                                    {{-- call the x component that include the RegenerateSessionAndRedirect method --}}
+                                    <x-gateway::pay_paypal amount="{{ $amountYouWantToPay }}" />
                                     </button>
 
                                 </div>
