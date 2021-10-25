@@ -34,6 +34,12 @@ class SumUpController extends Controller
         return $response->json();
     }
 
+    /**
+     * Create a checkout session id
+     * @param mixed $paymentInfo
+     *
+     * @return [type]
+     */
     public function createCheckout($paymentInfo)
     {
         $token = $this->tokenBearerGenerate();
@@ -48,6 +54,13 @@ class SumUpController extends Controller
         return $response->json();
     }
 
+    /**
+     * Make the payment against a checkout
+     * @param mixed $checkoutId
+     * @param mixed $cardInformation
+     *
+     * @return [type]
+     */
     public function makePayment($checkoutId, $cardInformation)
     {
         $token    = $this->tokenBearerGenerate();
@@ -65,6 +78,12 @@ class SumUpController extends Controller
         return $response->json();
     }
 
+    /**
+     * Check the status of the checkout
+     * @param mixed $checkoutId
+     *
+     * @return [type]
+     */
     public function checkCheckout($checkoutId)
     {
         $token    = $this->tokenBearerGenerate();

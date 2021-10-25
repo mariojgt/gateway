@@ -185,7 +185,7 @@ class GocardlessController extends Controller
     public function createLog($data)
     {
         $LogFileName = $data->id . '.log';
-        Storage::put(config('gateway.go_log'). '/' . $LogFileName, json_encode($data));
+        Storage::put(config('gateway.go_log') . '/' . $LogFileName, json_encode($data));
     }
 
     /**
@@ -218,8 +218,8 @@ class GocardlessController extends Controller
                         switch ($event->action) {
                             case 'created':
                                 GocardlessUserSubscriptionSuccessEvent::dispatch($event);
-                //                 $LogFileName = 'weebhook.log';
-                // Storage::put(config('gateway.go_log') . $LogFileName, json_encode($event->resource_type));
+                                //                 $LogFileName = 'weebhook.log';
+                                // Storage::put(config('gateway.go_log') . $LogFileName, json_encode($event->resource_type));
                                 break;
                             case 'cancelled':
                                 GocardlessUserSubscriptionCancelEvent::dispatch($event);

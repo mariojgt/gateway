@@ -113,7 +113,7 @@ class BraintreeController extends Controller
     }
 
     /**
-     * Create a stripe log file when the session has been created
+     * Create a braintree log file when the session has been created
      * @param mixed $data
      *
      */
