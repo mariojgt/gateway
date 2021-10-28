@@ -51,4 +51,5 @@ return [
     // Sumup
     'sumup_client_id'     => env('SUMUP_CLIENT_ID'),
     'sumup_client_secret' => env('SUMUP_CLIENT_SECRET'),
+    'sumup_client_email'  => env('SUMUP_CLIENT_EMAIL'),
 ];

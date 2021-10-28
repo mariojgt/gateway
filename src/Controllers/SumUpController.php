@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Storage;
  */
 class SumUpController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->endpoint = 'https://api.sumup.com';
+    }
+
+
     /**
      * This Fuction will generate a Bearer Token so we can make payments with sumup gateway
      *
@@ -25,7 +32,7 @@ class SumUpController extends Controller
      */
     public function tokenBearerGenerate()
     {
-        $response = Http::post('https://api.sumup.com/token', [
+        $response = Http::post($this->endpoint . '/token', [
             'grant_type'    => 'client_credentials',
             'client_id'     => config('gateway.sumup_client_id'),
             'client_secret' => config('gateway.sumup_client_secret'),
@@ -43,7 +50,7 @@ class SumUpController extends Controller
     public function createCheckout($paymentInfo)
     {
         $token = $this->tokenBearerGenerate();
-        $response = Http::withToken($token['access_token'])->post('https://api.sumup.com/v0.1/checkouts', [
+        $response = Http::withToken($token['access_token'])->post($this->endpoint . '/v0.1/checkouts', [
             'checkout_reference' => $paymentInfo['checkout_reference'],
             'amount'             => $paymentInfo['amount'],
             'currency'           => $paymentInfo['currency'],
@@ -64,7 +71,7 @@ class SumUpController extends Controller
     public function makePayment($checkoutId, $cardInformation)
     {
         $token    = $this->tokenBearerGenerate();
-        $response = Http::withToken($token['access_token'])->put('https://api.sumup.com/v0.1/checkouts/' . $checkoutId, [
+        $response = Http::withToken($token['access_token'])->put($this->endpoint . '/v0.1/checkouts/' . $checkoutId, [
             'payment_type' => $cardInformation['payment_type'],
             'card' => [
                 'name'         => $cardInformation['card']['name'],
@@ -87,7 +94,7 @@ class SumUpController extends Controller
     public function checkCheckout($checkoutId)
     {
         $token    = $this->tokenBearerGenerate();
-        $response = Http::withToken($token['access_token'])->get('https://api.sumup.com/v0.1/checkouts/' . $checkoutId, []);
+        $response = Http::withToken($token['access_token'])->get($this->endpoint . '/v0.1/checkouts/' . $checkoutId, []);
 
         return $response->json();
     }
