@@ -7,6 +7,7 @@ use Mariojgt\Gateway\Controllers\StripeController;
 Route::group([
     'middleware' => ['web'],
 ], function () {
+
     // Stripe webhooks
     Route::any('/stripe/weebhook', [StripeController::class, 'webhookManager'])
         ->name('stripe.weebhook');
