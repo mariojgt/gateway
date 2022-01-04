@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Mariojgt\Gateway\Controllers\SumUpController;
+use Mariojgt\Gateway\Controllers\Demo\XeroDemoController;
 use Mariojgt\Gateway\Controllers\Demo\PaypalDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\StripeDemoContoller;
 use Mariojgt\Gateway\Controllers\Demo\SumUpDemoController;
@@ -44,4 +45,8 @@ Route::group([
         ->name('sumup');
     Route::post('/sumup/pay', [SumUpDemoController::class, 'pay'])
         ->name('sumup.pay');
+
+    // Xero Example
+    Route::get('/xero', [XeroDemoController::class, 'index'])
+        ->name('xero');
 });
