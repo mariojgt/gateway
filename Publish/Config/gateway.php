@@ -31,6 +31,8 @@ return [
     'currency'   => 'GBP',
     // If false you weebhooks wont work
     'stripe_weebhook_enable' => true,
+    // More information check https://stripe.com/docs/api/checkout/sessions/create#create_checkout_session-payment_method_types
+    'stripe_payment_method_types' => ['card'],
 
     // GO CARDLESS KEY
     'gc_live'                            => false,

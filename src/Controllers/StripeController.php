@@ -43,13 +43,24 @@ class StripeController extends Controller
         //     'currency'    => 'GBP',
         //     'quantity'    => 2,
         // ]
+
+        // Create a fall back in case we update and don't publish the cart
+        $paymentsMethods = ['card'];
+        if (empty(config('gateway.stripe_payment_method_types'))) {
+            $paymentsMethods = ['card'];
+        } else {
+            $paymentsMethods = config('gateway.stripe_payment_method_types');
+        }
+
         // Call stripe session
         $stripeSession = $this->stripe->checkout->sessions->create([
             'success_url'          => url(config('gateway.success_url')),
             'cancel_url'           => url(config('gateway.cancel_url')),
             'payment_method_types' => ['card'],
             'line_items'           => $cartItem,
-            'mode' => 'payment',
+            'mode'                 => 'payment',
+            // Payment mthod you want to use
+            'payment_method_types' => $paymentsMethods,
         ]);
 
         $this->createLog($stripeSession);
