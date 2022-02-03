@@ -49,4 +49,6 @@ Route::group([
     // Xero Example
     Route::get('/xero', [XeroDemoController::class, 'index'])
         ->name('xero');
+    Route::post('/xero/create/invoice', [XeroDemoController::class, 'createInvoice'])
+        ->name('xero.create.invoice');
 });
