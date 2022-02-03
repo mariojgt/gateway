@@ -54,4 +54,9 @@ return [
     'sumup_client_id'     => env('SUMUP_CLIENT_ID'),
     'sumup_client_secret' => env('SUMUP_CLIENT_SECRET'),
     'sumup_client_email'  => env('SUMUP_CLIENT_EMAIL'),
+
+    // Xero API KEYS
+    'target_tenant_id'   => env('TARGET_TENANT_ID'),
+    'xero_client_id'     => env('XERO_CLIENT_ID'),
+    'xero_client_secret' => env('XERO_CLIENT_SECRET'),
 ];
