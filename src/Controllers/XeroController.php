@@ -61,6 +61,9 @@ class XeroController extends Controller
      */
     public function generateAcessToken()
     {
+        if (empty(config('gateway.xero_client_id')) || empty(config('gateway.xero_client_secret'))) {
+            throw new \Exception('Please set the Xero Client ID and Client Secret in the config file more information check https://developer.xero.com/app/manage');
+        }
         // Sending the request to xero with the normal authorization and form data
         $response = Http::withBasicAuth(config('gateway.xero_client_id'), config('gateway.xero_client_secret'))
             ->asForm()
