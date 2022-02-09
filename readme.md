@@ -1,4 +1,4 @@
-# Laravel Gateway 
+# Laravel Gateway laravel 9 compatible
 
 #composer require mariojgt/gateway
 
@@ -26,7 +26,7 @@ In you blade file do the following
 
    ```php
    use Mariojgt\Gateway\Controllers\StripeContoller;
-   
+
    public function sessionGenerate(Request $request)
        {
            // Start the stripe class
