@@ -46,7 +46,7 @@ Route::group([
     Route::post('/sumup/pay', [SumUpDemoController::class, 'pay'])
         ->name('sumup.pay');
 
-    // Xero Example
+    // Xero Example routes
     Route::get('/xero', [XeroDemoController::class, 'index'])
         ->name('xero');
     Route::post('/xero/create/invoice', [XeroDemoController::class, 'createInvoice'])
